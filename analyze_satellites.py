@@ -29,22 +29,22 @@ def categorise_clinics(clinics):
     regular = []
 
     for c in clinics:
-        clinic_type = c.get('clinic_type', 'clinic')
-        if clinic_type == 'satellite':
+        clinic_type = c.get("clinic_type", "clinic")
+        if clinic_type == "satellite":
             satellites.append(c)
-        elif clinic_type == 'transport':
+        elif clinic_type == "transport":
             transports.append(c)
-        elif clinic_type == 'unknown':
+        elif clinic_type == "unknown":
             unknowns.append(c)
         else:
             regular.append(c)
 
     return {
-        'satellites': satellites,
-        'transports': transports,
-        'unknowns': unknowns,
-        'clinics': regular,
-        'total_cards': len(clinics),
+        "satellites": satellites,
+        "transports": transports,
+        "unknowns": unknowns,
+        "clinics": regular,
+        "total_cards": len(clinics),
     }
 
 
@@ -61,13 +61,13 @@ def main():
     all_clinics = scrape_search_results(search_url)
     info = categorise_clinics(all_clinics)
 
-    satellites = info['satellites']
-    transports = info['transports']
-    unknowns = info['unknowns']
-    regular = info['clinics']
-    total_cards = info['total_cards']
+    satellites = info["satellites"]
+    transports = info["transports"]
+    unknowns = info["unknowns"]
+    regular = info["clinics"]
+    total_cards = info["total_cards"]
 
-    regular_names = [c['name'] for c in regular]
+    regular_names = [c["name"] for c in regular]
 
     print(f"\nFound {total_cards} total clinic cards across all pages")
     print(f"  Regular clinics: {len(regular)}")
@@ -88,13 +88,13 @@ def main():
 
     for sat in satellites:
         print(f"Satellite: {sat['name']}")
-        parents = sat.get('parent_clinics', [])
+        parents = sat.get("parent_clinics", [])
 
         if parents:
-            print(f"  Parent(s):")
+            print("  Parent(s):")
             has_parent_in_results = False
             for parent in parents:
-                in_results = parent['name'] in regular_names
+                in_results = parent["name"] in regular_names
                 status = "IN RESULTS" if in_results else "NOT in results"
                 print(f"    - {parent['name']} ({status})")
                 if in_results:
@@ -105,7 +105,7 @@ def main():
             else:
                 satellites_without_parents += 1
         else:
-            print(f"  No parent clinic reference found")
+            print("  No parent clinic reference found")
             satellites_without_parents += 1
 
         print()
@@ -119,10 +119,10 @@ def main():
 
         for t in transports:
             print(f"Transport: {t['name']}")
-            parents = t.get('parent_clinics', [])
+            parents = t.get("parent_clinics", [])
             if parents:
                 for parent in parents:
-                    in_results = parent['name'] in regular_names
+                    in_results = parent["name"] in regular_names
                     status = "IN RESULTS" if in_results else "NOT in results"
                     print(f"  Parent: {parent['name']} ({status})")
             print()
@@ -136,7 +136,7 @@ def main():
 
         for u in unknowns:
             print(f"Unknown: {u['name']}")
-            parents = u.get('parent_clinics', [])
+            parents = u.get("parent_clinics", [])
             if parents:
                 for parent in parents:
                     print(f"  Parent: {parent['name']}")
@@ -157,5 +157,6 @@ def main():
     print(f"Total unique locations: {all_locations}")
     print(f"Total clinic cards found: {total_cards}")
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     main()

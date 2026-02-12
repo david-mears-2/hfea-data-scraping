@@ -10,25 +10,29 @@ import csv
 import re
 import sys
 import time
-from urllib.parse import urlparse, parse_qs, urlencode, urlunparse, quote
+from urllib.parse import parse_qs, quote, urlencode, urlparse, urlunparse
+
 import requests
 from bs4 import BeautifulSoup
-import extractors
 
+import extractors
 
 # Headers to use for requests
 HEADERS = {
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+    "User-Agent": (
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+        " (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
+    )
 }
 
-BASE_URL = 'https://www.hfea.gov.uk'
-SEARCH_PATH = '/choose-a-clinic/clinic-search/results/'
+BASE_URL = "https://www.hfea.gov.uk"
+SEARCH_PATH = "/choose-a-clinic/clinic-search/results/"
 RATE_LIMIT_DELAY = 1.5  # seconds between requests
 RATE_LIMIT_BACKOFF_MULTIPLIER = 2
 REQUEST_TIMEOUT = 30
 DEFAULT_MAX_RETRIES = 3
 DEFAULT_MAX_PAGES = 20
-DEFAULT_OUTPUT = 'output/clinics_data.csv'
+DEFAULT_OUTPUT = "output/clinics_data.csv"
 
 
 def build_search_url(location, distance):
@@ -100,10 +104,10 @@ def extract_clinic_urls_from_page(html, debug=False):
             'distance': float or None (miles from search center)
         }
     """
-    soup = BeautifulSoup(html, 'lxml')
+    soup = BeautifulSoup(html, "lxml")
     clinics = []
 
-    clinic_cards = soup.find_all('li', class_='clinic')
+    clinic_cards = soup.find_all("li", class_="clinic")
 
     if debug:
         print(f"  DEBUG: Found {len(clinic_cards)} clinic cards on page")
@@ -112,27 +116,27 @@ def extract_clinic_urls_from_page(html, debug=False):
         if debug:
             print(f"  DEBUG: Processing card {i}/{len(clinic_cards)}")
 
-        name_heading = card.find('h3', class_='clinic-name')
+        name_heading = card.find("h3", class_="clinic-name")
         if not name_heading:
             if debug:
                 print(f"  DEBUG: Card {i} - No h3.clinic-name found, SKIPPING")
             continue
 
-        link = name_heading.find('a')
+        link = name_heading.find("a")
         if not link:
             if debug:
                 print(f"  DEBUG: Card {i} - No link in h3, SKIPPING")
             continue
 
-        href = link.get('href')
+        href = link.get("href")
         name = link.get_text(strip=True)
 
         # Extract distance (e.g., "4.54 miles")
         distance = None
-        distance_p = card.find('p', class_='distance')
+        distance_p = card.find("p", class_="distance")
         if distance_p:
             distance_text = distance_p.get_text(strip=True)
-            distance_match = re.search(r'([\d.]+)\s*miles?', distance_text, re.IGNORECASE)
+            distance_match = re.search(r"([\d.]+)\s*miles?", distance_text, re.IGNORECASE)
             if distance_match:
                 distance = float(distance_match.group(1))
 
@@ -146,82 +150,84 @@ def extract_clinic_urls_from_page(html, debug=False):
         if not href:
             # Determine clinic type and extract parent references from desc
             parent_clinics = []
-            clinic_type = 'unknown'  # satellite, transport, or unknown
-            desc_paragraphs = card.find_all('p', class_='clinic-desc')
+            clinic_type = "unknown"  # satellite, transport, or unknown
+            desc_paragraphs = card.find_all("p", class_="clinic-desc")
 
             for p in desc_paragraphs:
                 text = p.get_text(strip=True)
-                if 'Satellite clinic to' in text:
-                    clinic_type = 'satellite'
-                elif 'Transport clinic to' in text:
-                    clinic_type = 'transport'
+                if "Satellite clinic to" in text:
+                    clinic_type = "satellite"
+                elif "Transport clinic to" in text:
+                    clinic_type = "transport"
                 else:
                     continue
 
-                parent_link = p.find('a')
+                parent_link = p.find("a")
                 if parent_link:
                     parent_name = parent_link.get_text(strip=True)
-                    parent_href = parent_link.get('href')
+                    parent_href = parent_link.get("href")
                     parent_id = None
                     if parent_href:
-                        id_match = re.search(r'/results/(\d+)/?', parent_href)
+                        id_match = re.search(r"/results/(\d+)/?", parent_href)
                         if id_match:
                             parent_id = int(id_match.group(1))
-                    parent_clinics.append({
-                        'name': parent_name,
-                        'clinic_id': parent_id,
-                        'url': parent_href
-                    })
+                    parent_clinics.append({"name": parent_name, "clinic_id": parent_id, "url": parent_href})
 
             if debug:
                 print(f"  DEBUG: Card {i} - {clinic_type} clinic, parent(s): {parent_clinics}")
 
-            clinics.append({
-                'name': name,
-                'url': None,
-                'clinic_id': None,
-                'treatments': treatments,
-                'clinic_type': clinic_type,
-                'parent_clinics': parent_clinics,
-                'distance': distance
-            })
+            clinics.append(
+                {
+                    "name": name,
+                    "url": None,
+                    "clinic_id": None,
+                    "treatments": treatments,
+                    "clinic_type": clinic_type,
+                    "parent_clinics": parent_clinics,
+                    "distance": distance,
+                }
+            )
 
             if debug:
                 print(f"  DEBUG: Card {i} - Added as {clinic_type} clinic")
             continue
 
         # Extract clinic ID from URL like /choose-a-clinic/clinic-search/results/153/
-        match = re.search(r'/results/(\d+)/?', href)
+        match = re.search(r"/results/(\d+)/?", href)
         if match:
             clinic_id = int(match.group(1))
 
             if debug:
                 print(f"  DEBUG: Card {i} - Extracted clinic_id: {clinic_id}")
 
-            clinics.append({
-                'name': name,
-                'url': href,
-                'clinic_id': clinic_id,
-                'treatments': treatments,
-                'clinic_type': 'clinic',
-                'parent_clinics': [],
-                'distance': distance
-            })
+            clinics.append(
+                {
+                    "name": name,
+                    "url": href,
+                    "clinic_id": clinic_id,
+                    "treatments": treatments,
+                    "clinic_type": "clinic",
+                    "parent_clinics": [],
+                    "distance": distance,
+                }
+            )
 
             if debug:
                 print(f"  DEBUG: Card {i} - Successfully added to list")
         else:
             print(f"  ⚠ Warning: Clinic '{name}' has unexpected href format: '{href}' — included without clinic_id")
-            clinics.append({
-                'name': name,
-                'url': href,
-                'clinic_id': None,
-                'treatments': treatments,
-                'clinic_type': 'clinic',
-                'parent_clinics': [],
-                'distance': distance,
-                'unexpected_href': href
-            })
+            clinics.append(
+                {
+                    "name": name,
+                    "url": href,
+                    "clinic_id": None,
+                    "treatments": treatments,
+                    "clinic_type": "clinic",
+                    "parent_clinics": [],
+                    "distance": distance,
+                    "unexpected_href": href,
+                }
+            )
 
     return clinics
 
@@ -249,7 +255,7 @@ def scrape_search_results(search_url, max_pages=DEFAULT_MAX_PAGES, debug=False):
         # Build URL for this page
         parsed = urlparse(search_url)
         params = parse_qs(parsed.query)
-        params['page'] = [str(page_num)]
+        params["page"] = [str(page_num)]
         new_query = urlencode(params, doseq=True)
         page_url = urlunparse(parsed._replace(query=new_query))
 
@@ -270,7 +276,7 @@ def scrape_search_results(search_url, max_pages=DEFAULT_MAX_PAGES, debug=False):
 
         # If we got no clinics, we've probably reached the end
         if not clinics:
-            print(f"  No clinics found, stopping pagination")
+            print("  No clinics found, stopping pagination")
             break
 
     print()
@@ -294,7 +300,7 @@ def scrape_clinic_detail(clinic_id, clinic_name, treatments_from_search):
     """
     url = f"{BASE_URL}{SEARCH_PATH}{clinic_id}/"
 
-    print(f"  Fetching detail page...")
+    print("  Fetching detail page...")
     html = fetch_page(url)
 
     if not html:
@@ -305,9 +311,9 @@ def scrape_clinic_detail(clinic_id, clinic_name, treatments_from_search):
         data = extractors.extract_all_clinic_data(html)
 
         # Add treatment data from search results
-        data['Do they do IVF'] = treatments_from_search.get('ivf', False)
-        data['Do they do ICSI'] = treatments_from_search.get('icsi', False)
-        data['Do they do Surgical sperm collection'] = treatments_from_search.get('surgical_sperm', False)
+        data["Do they do IVF"] = treatments_from_search.get("ivf", False)
+        data["Do they do ICSI"] = treatments_from_search.get("icsi", False)
+        data["Do they do Surgical sperm collection"] = treatments_from_search.get("surgical_sperm", False)
 
         return data
     except Exception as e:
@@ -331,19 +337,16 @@ def resolve_parent_clinics(clinics):
                 minimum satellite distance (float or None)
             missing_parent_ids: set of parent clinic_ids not in search results
     """
-    result_clinic_ids = {
-        c['clinic_id'] for c in clinics
-        if c.get('clinic_id') is not None
-    }
+    result_clinic_ids = {c["clinic_id"] for c in clinics if c.get("clinic_id") is not None}
 
     # Collect satellite distances per parent (only satellites, not transport clinics)
     parent_satellite_distances = {}
     for c in clinics:
-        if c.get('clinic_type') != 'satellite':
+        if c.get("clinic_type") != "satellite":
             continue
-        satellite_distance = c.get('distance')
-        for parent in c.get('parent_clinics', []):
-            parent_id = parent.get('clinic_id')
+        satellite_distance = c.get("distance")
+        for parent in c.get("parent_clinics", []):
+            parent_id = parent.get("clinic_id")
             if parent_id is None:
                 continue
             if parent_id not in parent_satellite_distances:
@@ -395,100 +398,96 @@ def scrape_all_clinics(search_url, max_pages=DEFAULT_MAX_PAGES, debug=False):
     failed = 0
 
     for i, clinic in enumerate(clinics, 1):
-        clinic_type = clinic.get('clinic_type', 'clinic')
+        clinic_type = clinic.get("clinic_type", "clinic")
 
         # Handle satellite, transport, and unknown clinic types (no detail page)
-        if clinic_type in ('satellite', 'transport', 'unknown'):
-            parent_clinics = clinic.get('parent_clinics', [])
-            parent_names = ', '.join(p['name'] for p in parent_clinics) if parent_clinics else 'Unknown'
+        if clinic_type in ("satellite", "transport", "unknown"):
+            parent_clinics = clinic.get("parent_clinics", [])
+            parent_names = ", ".join(p["name"] for p in parent_clinics) if parent_clinics else "Unknown"
 
             type_label = clinic_type.capitalize()
             print(f"[{i}/{len(clinics)}] {clinic['name']} ({type_label})")
 
             data = {
-                'Name of clinic': clinic['name'],
-                'Satellite of': parent_names if clinic_type == 'satellite' else '',
-                'Transport for': parent_names if clinic_type == 'transport' else '',
-                'Distance (miles)': clinic.get('distance'),
-                'BMI eligibility limit': None,
-                'Do they do egg-freezing': None,
-                'Do they do IVF': clinic.get('treatments', {}).get('ivf', False),
-                'Do they do ICSI': clinic.get('treatments', {}).get('icsi', False),
-                'Do they do Surgical sperm collection': clinic.get('treatments', {}).get('surgical_sperm', False),
-                'Treats NHS patients': None,
-                'Treats private patients': None,
-                'At least one counselling session included': None,
-                'Inspection rating out of 5': None,
-                'Patient rating out of 5': None,
-                'Number of patient ratings': None,
-                'Patient empowerment rating': None,
-                'Patient empathy rating': None,
-                'Under 38s births per embryo transferred': None,
-                'Error bars: Under 38s births per embryo transferred': None,
-                'Under 38s births per egg collection': None,
-                'Error bars: Under 38s births per egg collection': None,
-                'Under 38s births per donor insemination treatment': None,
-                'Error bars: Under 38s births per donor insemination treatment': None
+                "Name of clinic": clinic["name"],
+                "Satellite of": parent_names if clinic_type == "satellite" else "",
+                "Transport for": parent_names if clinic_type == "transport" else "",
+                "Distance (miles)": clinic.get("distance"),
+                "BMI eligibility limit": None,
+                "Do they do egg-freezing": None,
+                "Do they do IVF": clinic.get("treatments", {}).get("ivf", False),
+                "Do they do ICSI": clinic.get("treatments", {}).get("icsi", False),
+                "Do they do Surgical sperm collection": clinic.get("treatments", {}).get("surgical_sperm", False),
+                "Treats NHS patients": None,
+                "Treats private patients": None,
+                "At least one counselling session included": None,
+                "Inspection rating out of 5": None,
+                "Patient rating out of 5": None,
+                "Number of patient ratings": None,
+                "Patient empowerment rating": None,
+                "Patient empathy rating": None,
+                "Under 38s births per embryo transferred": None,
+                "Error bars: Under 38s births per embryo transferred": None,
+                "Under 38s births per egg collection": None,
+                "Error bars: Under 38s births per egg collection": None,
+                "Under 38s births per donor insemination treatment": None,
+                "Error bars: Under 38s births per donor insemination treatment": None,
             }
-            if clinic_type == 'unknown':
-                data['Warning'] = 'Unknown clinic type (no href, not satellite or transport)'
+            if clinic_type == "unknown":
+                data["Warning"] = "Unknown clinic type (no href, not satellite or transport)"
 
             all_data.append(data)
             successful += 1
             print(f"  ✓ {type_label} clinic added")
-        elif clinic.get('unexpected_href'):
+        elif clinic.get("unexpected_href"):
             print(f"[{i}/{len(clinics)}] {clinic['name']} (⚠ unexpected href: {clinic['unexpected_href']})")
 
             data = {
-                'Name of clinic': clinic['name'],
-                'Satellite of': '',
-                'Distance (miles)': clinic.get('distance'),
-                'Warning': f"Unexpected href format: {clinic['unexpected_href']}",
-                'BMI eligibility limit': None,
-                'Do they do egg-freezing': None,
-                'Do they do IVF': clinic.get('treatments', {}).get('ivf', False),
-                'Do they do ICSI': clinic.get('treatments', {}).get('icsi', False),
-                'Do they do Surgical sperm collection': clinic.get('treatments', {}).get('surgical_sperm', False),
-                'Treats NHS patients': None,
-                'Treats private patients': None,
-                'At least one counselling session included': None,
-                'Inspection rating out of 5': None,
-                'Patient rating out of 5': None,
-                'Number of patient ratings': None,
-                'Patient empowerment rating': None,
-                'Patient empathy rating': None,
-                'Under 38s births per embryo transferred': None,
-                'Error bars: Under 38s births per embryo transferred': None,
-                'Under 38s births per egg collection': None,
-                'Error bars: Under 38s births per egg collection': None,
-                'Under 38s births per donor insemination treatment': None,
-                'Error bars: Under 38s births per donor insemination treatment': None
+                "Name of clinic": clinic["name"],
+                "Satellite of": "",
+                "Distance (miles)": clinic.get("distance"),
+                "Warning": f"Unexpected href format: {clinic['unexpected_href']}",
+                "BMI eligibility limit": None,
+                "Do they do egg-freezing": None,
+                "Do they do IVF": clinic.get("treatments", {}).get("ivf", False),
+                "Do they do ICSI": clinic.get("treatments", {}).get("icsi", False),
+                "Do they do Surgical sperm collection": clinic.get("treatments", {}).get("surgical_sperm", False),
+                "Treats NHS patients": None,
+                "Treats private patients": None,
+                "At least one counselling session included": None,
+                "Inspection rating out of 5": None,
+                "Patient rating out of 5": None,
+                "Number of patient ratings": None,
+                "Patient empowerment rating": None,
+                "Patient empathy rating": None,
+                "Under 38s births per embryo transferred": None,
+                "Error bars: Under 38s births per embryo transferred": None,
+                "Under 38s births per egg collection": None,
+                "Error bars: Under 38s births per egg collection": None,
+                "Under 38s births per donor insemination treatment": None,
+                "Error bars: Under 38s births per donor insemination treatment": None,
             }
 
             all_data.append(data)
             successful += 1
-            print(f"  ⚠ Added with limited data (no detail page available)")
+            print("  ⚠ Added with limited data (no detail page available)")
         else:
             # Regular clinic with detail page
             print(f"[{i}/{len(clinics)}] {clinic['name']} (ID: {clinic['clinic_id']})")
 
-            data = scrape_clinic_detail(
-                clinic['clinic_id'],
-                clinic['name'],
-                clinic.get('treatments', {})
-            )
+            data = scrape_clinic_detail(clinic["clinic_id"], clinic["name"], clinic.get("treatments", {}))
 
             if data:
-                data['Satellite of'] = ''
-                data['Transport for'] = ''
-                data['Distance (miles)'] = clinic.get('distance')
+                data["Satellite of"] = ""
+                data["Transport for"] = ""
+                data["Distance (miles)"] = clinic.get("distance")
                 all_data.append(data)
-                clinic_id_to_data_index[clinic['clinic_id']] = len(all_data) - 1
+                clinic_id_to_data_index[clinic["clinic_id"]] = len(all_data) - 1
                 successful += 1
-                print(f"  ✓ Data extracted successfully")
+                print("  ✓ Data extracted successfully")
             else:
                 failed += 1
-                print(f"  ✗ Failed to extract data")
+                print("  ✗ Failed to extract data")
 
         print()
 
@@ -496,7 +495,7 @@ def scrape_all_clinics(search_url, max_pages=DEFAULT_MAX_PAGES, debug=False):
     for parent_id, min_distance in parent_distance_map.items():
         if parent_id in clinic_id_to_data_index:
             idx = clinic_id_to_data_index[parent_id]
-            all_data[idx]['Distance (miles)'] = min_distance
+            all_data[idx]["Distance (miles)"] = min_distance
 
     # Step 4: Fetch parent clinics not in search results
     if missing_parent_ids:
@@ -509,9 +508,9 @@ def scrape_all_clinics(search_url, max_pages=DEFAULT_MAX_PAGES, debug=False):
             # Find parent name from satellite references
             parent_name = None
             for c in clinics:
-                for p in c.get('parent_clinics', []):
-                    if p.get('clinic_id') == parent_id:
-                        parent_name = p['name']
+                for p in c.get("parent_clinics", []):
+                    if p.get("clinic_id") == parent_id:
+                        parent_name = p["name"]
                         break
                 if parent_name:
                     break
@@ -521,16 +520,16 @@ def scrape_all_clinics(search_url, max_pages=DEFAULT_MAX_PAGES, debug=False):
 
             data = scrape_clinic_detail(parent_id, display_name, {})
             if data:
-                data['Satellite of'] = ''
-                data['Transport for'] = ''
-                data['Distance (miles)'] = parent_distance_map.get(parent_id)
-                data['Warning'] = 'Parent clinic outside search area'
+                data["Satellite of"] = ""
+                data["Transport for"] = ""
+                data["Distance (miles)"] = parent_distance_map.get(parent_id)
+                data["Warning"] = "Parent clinic outside search area"
                 all_data.append(data)
                 successful += 1
-                print(f"    ✓ Added parent clinic (outside search area)")
+                print("    ✓ Added parent clinic (outside search area)")
             else:
                 failed += 1
-                print(f"    ✗ Failed to fetch parent clinic")
+                print("    ✗ Failed to fetch parent clinic")
 
             print()
 
@@ -563,105 +562,138 @@ def write_csv(data, output_path):
 
     # Column headers
     fieldnames = [
-        'Name of clinic',
-        'Satellite of',
-        'Transport for',
-        'Distance (miles)',
-        'BMI eligibility limit',
-        'Do they do egg-freezing',
-        'Do they do IVF',
-        'Do they do ICSI',
-        'Do they do Surgical sperm collection',
-        'Treats NHS patients',
-        'Treats private patients',
-        'At least one counselling session included',
-        'Inspection rating out of 5',
-        'Patient rating out of 5',
-        'Number of patient ratings',
-        'Patient empowerment rating',
-        'Patient empathy rating',
-        'Under 38s births per embryo transferred',
-        'Error bars: Under 38s births per embryo transferred',
-        'Under 38s births per egg collection',
-        'Error bars: Under 38s births per egg collection',
-        'Under 38s births per donor insemination treatment',
-        'Error bars: Under 38s births per donor insemination treatment',
-        'Warning'
+        "Name of clinic",
+        "Satellite of",
+        "Transport for",
+        "Distance (miles)",
+        "BMI eligibility limit",
+        "Do they do egg-freezing",
+        "Do they do IVF",
+        "Do they do ICSI",
+        "Do they do Surgical sperm collection",
+        "Treats NHS patients",
+        "Treats private patients",
+        "At least one counselling session included",
+        "Inspection rating out of 5",
+        "Patient rating out of 5",
+        "Number of patient ratings",
+        "Patient empowerment rating",
+        "Patient empathy rating",
+        "Under 38s births per embryo transferred",
+        "Error bars: Under 38s births per embryo transferred",
+        "Under 38s births per egg collection",
+        "Error bars: Under 38s births per egg collection",
+        "Under 38s births per donor insemination treatment",
+        "Error bars: Under 38s births per donor insemination treatment",
+        "Warning",
     ]
 
     # Type metadata row
     types = {
-        'Name of clinic': 'string',
-        'Satellite of': 'string',
-        'Transport for': 'string',
-        'Distance (miles)': 'number',
-        'Warning': 'string',
-        'BMI eligibility limit': 'boolean',
-        'Do they do egg-freezing': 'boolean',
-        'Do they do IVF': 'boolean',
-        'Do they do ICSI': 'boolean',
-        'Do they do Surgical sperm collection': 'boolean',
-        'Treats NHS patients': 'boolean',
-        'Treats private patients': 'boolean',
-        'At least one counselling session included': 'boolean',
-        'Inspection rating out of 5': 'number',
-        'Patient rating out of 5': 'number',
-        'Number of patient ratings': 'number',
-        'Patient empowerment rating': 'number',
-        'Patient empathy rating': 'number',
-        'Under 38s births per embryo transferred': 'percentage',
-        'Error bars: Under 38s births per embryo transferred': 'percentage points',
-        'Under 38s births per egg collection': 'percentage',
-        'Error bars: Under 38s births per egg collection': 'percentage points',
-        'Under 38s births per donor insemination treatment': 'percentage',
-        'Error bars: Under 38s births per donor insemination treatment': 'percentage points'
+        "Name of clinic": "string",
+        "Satellite of": "string",
+        "Transport for": "string",
+        "Distance (miles)": "number",
+        "Warning": "string",
+        "BMI eligibility limit": "boolean",
+        "Do they do egg-freezing": "boolean",
+        "Do they do IVF": "boolean",
+        "Do they do ICSI": "boolean",
+        "Do they do Surgical sperm collection": "boolean",
+        "Treats NHS patients": "boolean",
+        "Treats private patients": "boolean",
+        "At least one counselling session included": "boolean",
+        "Inspection rating out of 5": "number",
+        "Patient rating out of 5": "number",
+        "Number of patient ratings": "number",
+        "Patient empowerment rating": "number",
+        "Patient empathy rating": "number",
+        "Under 38s births per embryo transferred": "percentage",
+        "Error bars: Under 38s births per embryo transferred": "percentage points",
+        "Under 38s births per egg collection": "percentage",
+        "Error bars: Under 38s births per egg collection": "percentage points",
+        "Under 38s births per donor insemination treatment": "percentage",
+        "Error bars: Under 38s births per donor insemination treatment": "percentage points",
     }
 
     # Where to find metadata row
     where_to_find = {
-        'Name of clinic': 'h1',
-        'Satellite of': 'Search results page > Satellite clinic to X',
-        'Transport for': 'Search results page > Transport clinic to X',
-        'Distance (miles)': 'Search results page > p.distance (for parent clinics: distance of nearest satellite)',
-        'BMI eligibility limit': 'Clinic details > Eligibility > BMI limit',
-        'Do they do egg-freezing': 'Clinic details > Treatments > Fertility preservation',
-        'Do they do IVF': 'Search results page > Treatments offered',
-        'Do they do ICSI': 'Search results page > Treatments offered',
-        'Do they do Surgical sperm collection': 'Search results page > Treatments offered',
-        'Treats NHS patients': 'Clinic details > Eligibility > Treats NHS patients',
-        'Treats private patients': 'Clinic details > Eligibility > Treats private patients',
-        'At least one counselling session included': 'Clinic details > Eligibility > Number of counselling sessions included',
-        'Inspection rating out of 5': 'Ratings row',
-        'Patient rating out of 5': 'Ratings row',
-        'Number of patient ratings': 'Ratings row',
-        'Patient empowerment rating': 'How do existing patients rate the clinic? > To what extent did you feel you understood everything that was happening throughout your treatment?',
-        'Patient empathy rating': 'How do existing patients rate the clinic? > Was the level of empathy and understanding shown towards you by the clinic team?',
-        'Under 38s births per embryo transferred': 'What are the clinic\'s statistics? > Births per embryo transferred – excluding donor eggs and PGT-A > .rangeChart.mean span',
-        'Error bars: Under 38s births per embryo transferred': 'What are the clinic\'s statistics? > Births per embryo transferred – excluding donor eggs and PGT-A > .rangeChart.range width',
-        'Under 38s births per egg collection': 'What are the clinic\'s statistics? > Births per egg collection -- excluding donor eggs, including PGT-A > .rangeChart.mean span',
-        'Error bars: Under 38s births per egg collection': 'What are the clinic\'s statistics? > Births per egg collection -- excluding donor eggs, including PGT-A > .rangeChart.range width',
-        'Under 38s births per donor insemination treatment': 'What are the clinic\'s statistics? > What is the clinic\'s Donor Insemination birth rate? > .rangeChart.mean span',
-        'Error bars: Under 38s births per donor insemination treatment': 'What are the clinic\'s statistics? > What is the clinic\'s Donor Insemination birth rate? > .rangeChart.range width',
-        'Warning': 'Scraper warnings (e.g. unexpected href format)'
+        "Name of clinic": "h1",
+        "Satellite of": "Search results page > Satellite clinic to X",
+        "Transport for": "Search results page > Transport clinic to X",
+        "Distance (miles)": "Search results page > p.distance (for parent clinics: distance of nearest satellite)",
+        "BMI eligibility limit": "Clinic details > Eligibility > BMI limit",
+        "Do they do egg-freezing": "Clinic details > Treatments > Fertility preservation",
+        "Do they do IVF": "Search results page > Treatments offered",
+        "Do they do ICSI": "Search results page > Treatments offered",
+        "Do they do Surgical sperm collection": "Search results page > Treatments offered",
+        "Treats NHS patients": "Clinic details > Eligibility > Treats NHS patients",
+        "Treats private patients": "Clinic details > Eligibility > Treats private patients",
+        "At least one counselling session included": (
+            "Clinic details > Eligibility > Number of counselling sessions included"
+        ),
+        "Inspection rating out of 5": "Ratings row",
+        "Patient rating out of 5": "Ratings row",
+        "Number of patient ratings": "Ratings row",
+        "Patient empowerment rating": (
+            "How do existing patients rate the clinic?"
+            " > To what extent did you feel you understood everything"
+            " that was happening throughout your treatment?"
+        ),
+        "Patient empathy rating": (
+            "How do existing patients rate the clinic?"
+            " > Was the level of empathy and understanding shown towards you by the clinic team?"
+        ),
+        "Under 38s births per embryo transferred": (
+            "What are the clinic's statistics?"
+            " > Births per embryo transferred \u2013 excluding donor eggs and PGT-A"
+            " > .rangeChart.mean span"
+        ),
+        "Error bars: Under 38s births per embryo transferred": (
+            "What are the clinic's statistics?"
+            " > Births per embryo transferred \u2013 excluding donor eggs and PGT-A"
+            " > .rangeChart.range width"
+        ),
+        "Under 38s births per egg collection": (
+            "What are the clinic's statistics?"
+            " > Births per egg collection -- excluding donor eggs, including PGT-A"
+            " > .rangeChart.mean span"
+        ),
+        "Error bars: Under 38s births per egg collection": (
+            "What are the clinic's statistics?"
+            " > Births per egg collection -- excluding donor eggs, including PGT-A"
+            " > .rangeChart.range width"
+        ),
+        "Under 38s births per donor insemination treatment": (
+            "What are the clinic's statistics?"
+            " > What is the clinic's Donor Insemination birth rate?"
+            " > .rangeChart.mean span"
+        ),
+        "Error bars: Under 38s births per donor insemination treatment": (
+            "What are the clinic's statistics?"
+            " > What is the clinic's Donor Insemination birth rate?"
+            " > .rangeChart.range width"
+        ),
+        "Warning": "Scraper warnings (e.g. unexpected href format)",
     }
 
     try:
-        with open(output_path, 'w', newline='', encoding='utf-8') as f:
+        with open(output_path, "w", newline="", encoding="utf-8") as f:
             writer = csv.DictWriter(f, fieldnames=fieldnames)
 
             # Write header row with label
-            header_with_label = {'Name of clinic': 'Thing of interest:'}
-            header_with_label.update({field: field for field in fieldnames if field != 'Name of clinic'})
+            header_with_label = {"Name of clinic": "Thing of interest:"}
+            header_with_label.update({field: field for field in fieldnames if field != "Name of clinic"})
             writer.writerow(header_with_label)
 
             # Write type metadata row
-            type_row = {'Name of clinic': 'Type:'}
-            type_row.update({field: types[field] for field in fieldnames if field != 'Name of clinic'})
+            type_row = {"Name of clinic": "Type:"}
+            type_row.update({field: types[field] for field in fieldnames if field != "Name of clinic"})
             writer.writerow(type_row)
 
             # Write where to find metadata row
-            where_row = {'Name of clinic': 'Where to find it on the page:'}
-            where_row.update({field: where_to_find[field] for field in fieldnames if field != 'Name of clinic'})
+            where_row = {"Name of clinic": "Where to find it on the page:"}
+            where_row.update({field: where_to_find[field] for field in fieldnames if field != "Name of clinic"})
             writer.writerow(where_row)
 
             # Write data rows
@@ -670,7 +702,7 @@ def write_csv(data, output_path):
         print(f"✓ Data written to: {output_path}")
         print(f"  Data rows: {len(data)}")
         print(f"  Columns: {len(fieldnames)}")
-        print(f"  Metadata rows: 3 (Thing of interest, Type, Where to find)")
+        print("  Metadata rows: 3 (Thing of interest, Type, Where to find)")
 
     except Exception as e:
         print(f"✗ Error writing CSV: {e}")
@@ -686,46 +718,27 @@ def parse_args(argv=None):
         Parsed argparse.Namespace
     """
     parser = argparse.ArgumentParser(
-        description='Scrape HFEA clinic data from search results',
+        description="Scrape HFEA clinic data from search results",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
   %(prog)s --location "E16 4JT" --distance 50
   %(prog)s --location SW1A1AA --distance 30 --output my_clinics.csv
   %(prog)s --interactive
-        """
+        """,
     )
 
+    parser.add_argument("--location", help='Postcode or place name to search from (e.g. "E16 4JT")')
+    parser.add_argument("--distance", type=float, help="Search radius in miles (e.g. 50)")
+    parser.add_argument("--output", default=DEFAULT_OUTPUT, help=f"Output CSV file path (default: {DEFAULT_OUTPUT})")
     parser.add_argument(
-        '--location',
-        help='Postcode or place name to search from (e.g. "E16 4JT")'
-    )
-    parser.add_argument(
-        '--distance',
-        type=float,
-        help='Search radius in miles (e.g. 50)'
-    )
-    parser.add_argument(
-        '--output',
-        default=DEFAULT_OUTPUT,
-        help=f'Output CSV file path (default: {DEFAULT_OUTPUT})'
-    )
-    parser.add_argument(
-        '--max-pages',
+        "--max-pages",
         type=int,
         default=DEFAULT_MAX_PAGES,
-        help=f'Maximum number of search result pages to scrape (default: {DEFAULT_MAX_PAGES})'
+        help=f"Maximum number of search result pages to scrape (default: {DEFAULT_MAX_PAGES})",
     )
-    parser.add_argument(
-        '--debug',
-        action='store_true',
-        help='Enable verbose debug logging'
-    )
-    parser.add_argument(
-        '--interactive',
-        action='store_true',
-        help='Prompt for location and distance if not provided'
-    )
+    parser.add_argument("--debug", action="store_true", help="Enable verbose debug logging")
+    parser.add_argument("--interactive", action="store_true", help="Prompt for location and distance if not provided")
 
     return parser.parse_args(argv)
 
@@ -803,5 +816,5 @@ def main(argv=None):
     return 0
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     exit(main())

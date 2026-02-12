@@ -10,10 +10,11 @@ ENV/
 *.egg-info/
 
 # Project output
-archived_html/
 output/
 *.csv
-!thingsOfInterest.csv
+
+# Project setup
+thingsOfInterest.csv
 
 # IDE
 .vscode/

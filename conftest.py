@@ -5,13 +5,14 @@ Run `python html_archiver.py` once before running the test suite.
 """
 
 import os
+
 import pytest
 from bs4 import BeautifulSoup
 
-ARCHIVED_HTML_DIR = os.path.join(os.path.dirname(__file__), 'archived_html')
-SEARCH_RESULTS_PAGE1_PATH = os.path.join(ARCHIVED_HTML_DIR, 'search_results_page1.html')
-CLINIC_DETAIL_153_PATH = os.path.join(ARCHIVED_HTML_DIR, 'clinic_detail_153.html')
-CLINIC_DETAIL_BARTS_PATH = os.path.join(ARCHIVED_HTML_DIR, 'barts_detail.html')
+ARCHIVED_HTML_DIR = os.path.join(os.path.dirname(__file__), "archived_html")
+SEARCH_RESULTS_PAGE1_PATH = os.path.join(ARCHIVED_HTML_DIR, "search_results_page1.html")
+CLINIC_DETAIL_153_PATH = os.path.join(ARCHIVED_HTML_DIR, "clinic_detail_153.html")
+CLINIC_DETAIL_BARTS_PATH = os.path.join(ARCHIVED_HTML_DIR, "barts_detail.html")
 
 _ARCHIVED_PATHS = [
     SEARCH_RESULTS_PAGE1_PATH,
@@ -21,7 +22,7 @@ _ARCHIVED_PATHS = [
 
 
 def _read_html(path):
-    with open(path, 'r', encoding='utf-8') as f:
+    with open(path, "r", encoding="utf-8") as f:
         return f.read()
 
 
@@ -52,10 +53,10 @@ def barts_detail_html():
 @pytest.fixture
 def homerton_soup(homerton_detail_html):
     """Parsed BeautifulSoup of Homerton detail page."""
-    return BeautifulSoup(homerton_detail_html, 'lxml')
+    return BeautifulSoup(homerton_detail_html, "lxml")
 
 
 @pytest.fixture
 def barts_soup(barts_detail_html):
     """Parsed BeautifulSoup of Barts detail page."""
-    return BeautifulSoup(barts_detail_html, 'lxml')
+    return BeautifulSoup(barts_detail_html, "lxml")

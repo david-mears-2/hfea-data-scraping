@@ -1,0 +1,2898 @@
+
+<!doctype html>
+<html lang="en-GB" class="">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+
+    <title>Clinic profile for Barts Health Centre for Reproductive Medicine | HFEA</title>
+
+    
+
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link href="/theme/assets/css/main.css" rel="stylesheet">
+
+    <script src="/theme/assets/js/jquery-3.7.1.min.js"></script>
+    <script src="/theme/assets/js/jquery.validate-1.20.0.min.js"></script>
+    <script src="/theme/assets/js/jquery.validate.unobtrusive-4.0.0.min.js"></script>
+    
+    
+
+
+    
+
+    <script>(function (H) { H.className = H.className.replace(/\bno-js\b/, 'js') }(document.documentElement))</script>
+    
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-W3VXC84');</script>
+    <!-- End Google Tag Manager -->
+
+
+    <script>
+        // Clinic's licence suspension banner for clinic 153
+        // GW 08/08/2024 - Remove the banners but keep the inspection parts
+        window.addEventListener('load', () => {
+
+            const individualPage =
+                /choose\-a\-clinic\/clinic\-search\/results\/(153)(?!\d)/gim;
+
+            // Banner for the search results page
+            const resultsPage = /choose\-a\-clinic\/clinic\-search\/results/gim;
+            if (window.location.href.toLowerCase().match(resultsPage)) {
+                let clinicNames = document.querySelectorAll('.clinic-list h3.clinic-name');
+                clinicNames.forEach(clinicName => {
+                    if (clinicName.innerHTML.match(individualPage)) {
+
+                        // Makes all inspection rating blobs white
+                        clinicName.closest('li.clinic').querySelectorAll('.inspection-rating span.rating').forEach(blob => {
+                            blob.classList.remove('rating-full');
+                        })
+                        // END Makes all inspection rating blobs white
+                        // Removes the inspection rating under the blobs
+                        clinicName.closest('li.clinic').querySelector('.inspection-rating .rating-dot + p').remove();
+                        // END Removes the inspection rating under the blobs
+                    }
+                });
+            }
+            // END Banner for the search results page
+            // CaFC compare page
+            if (
+                window.location.href
+                    .toLowerCase()
+                    .includes('/choose-a-clinic/clinic-search/compare')
+            ) {
+                const linksToClinics = document.querySelectorAll('.compare div div h3 a');
+                linksToClinics.forEach(linkToClinic => {
+                    if (linkToClinic.getAttribute('href') ===
+                        '/choose-a-clinic/clinic-search/results/153/') {
+
+                        // Makes all inspection rating blobs white
+                        linkToClinic.closest('.row .col-md-12').querySelector('.compare-ratings [data-title="Homerton Fertility Centre"]').querySelectorAll('.rating').forEach(blob => {
+                            blob.classList.remove('rating-full');
+                        })
+                        // END Makes all inspection rating blobs white
+
+                        // Removes the inspection rating under the blobs
+                        linkToClinic.closest('.row .col-md-12').querySelector('.compare-ratings [data-title="Homerton Fertility Centre"]').querySelector('.rating-dot + p').innerHTML = '&nbsp;';
+                        // END Removes the inspection rating under the blobs
+
+                        // Removes the overall inspection rating
+                        linkToClinic.closest('.row .col-md-12').querySelector('.compare-ratings [data-title="Homerton Fertility Centre"]').querySelector('.rating-number.circle').innerHTML = '&nbsp;';
+                        // END Removes the overall inspection rating
+                    }
+                });
+            }
+            // END CaFC compare page
+        });
+        // END Clinic's licence suspension banner for clinic 153
+    </script>
+    
+
+    <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "GovernmentOrganization",
+          "name": "Human Fertilisation and Embryology Authority",
+          "alternateName": "HFEA",
+          "description": "We are the UK's independent regulator of fertility treatment and research using human embryos. We aim to ensure that everyone who steps into a fertility clinic, receives high quality care. We do this by licensing, monitoring and inspecting fertility clinics. This website provides free, clear and impartial information on UK fertility clinics, IVF and other types of fertility treatment, and donation.",
+          "url": "https://www.hfea.gov.uk",
+          "logo": "https://www.hfea.gov.uk/theme/assets/images/logos/stickyLogo.jpg",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "London, United Kingdom",
+            "postalCode": "E20 1JQ",
+            "streetAddress": "2nd floor, 2 Redman Place"
+          },
+          "foundingDate": "1990",
+          "keywords": "IVF, In vitro fertilisation, ICSI, Intracytoplasmic sperm injection, CaFC, Choose a fertility clinic, Fertility, Fertility treatments, Fertility treatment add-ons, Embryo testing and treatments for disease, Fertility preservation, NHS, HFEA, Human Fertilisation and Embryology Authority, Fertility glossary",
+          "department": {
+            "@context": "https://schema.org",
+            "@type": "GovernmentOrganization",
+            "name": "Department of Health and Social Care",
+            "description": "The Department of Health and Social Care (DHSC) is a department of His Majesty's Government responsible for government policy on health and adult social care matters in England, along with a few elements of the same matters which are not otherwise devolved to the Scottish Government, Welsh Government or Northern Ireland Executive. It oversees the English National Health Service (NHS). The department is led by the secretary of state for health and social care with three ministers of state and three parliamentary under-secretaries of state.",
+            "foundingDate": "1988"
+          },
+          "parentOrganization": {
+            "@context": "https://schema.org",
+            "@type": "GovernmentOrganization",
+            "name": "Department of Health and Social Care",
+            "description": "The Department of Health and Social Care (DHSC) is a department of His Majesty's Government responsible for government policy on health and adult social care matters in England, along with a few elements of the same matters which are not otherwise devolved to the Scottish Government, Welsh Government or Northern Ireland Executive. It oversees the English National Health Service (NHS). The department is led by the secretary of state for health and social care with three ministers of state and three parliamentary under-secretaries of state.",
+            "foundingDate": "1988"
+          }
+        }
+    </script>
+
+        <script type="application/ld+json">
+            {
+              "@context": "https://schema.org",
+              "@type": "MedicalClinic",
+              "name": "Barts Health Centre for Reproductive Medicine",
+              "description": "Barts Health Centre for Reproductive Medicine has been licensed by us since 1992 and offers all fertility treatments.",
+              "logo": "https://ifqlive.blob.core.windows.net/images/94Profile",
+              "image": "https://ifqlive.blob.core.windows.net/images/94Profile",
+              "medicalSpecialty": "Gynecologic",
+              "url": "https://www.hfea.gov.uk/choose-a-clinic/clinic-search/results/94/",
+"telephone": "+442077673302",
+"aggregateRating": {
+"@type": "AggregateRating",
+"ratingValue": "3",
+"reviewCount": "9"
+},
+              "isAcceptingNewPatients": true,
+              "openingHours": ["Mo-Fr 07:30-17:00", "Sa 09:00-13:00", "Su 09:00-13:00"],
+              "address": {
+                  "@type": "PostalAddress",
+"streetAddress": "Barts and the London NHS Trust, 2nd Floor, Kenton and Lucas Wing",
+"addressLocality": "London",
+"postalCode": "EC1A 7BE",
+                  "addressCountry": "United Kingdom"
+              }
+            }
+        </script>
+
+
+
+    
+
+    <meta name="description" content="We are the UK's independent regulator of fertility treatment and research using human embryos.">
+    <meta property="og:url" content="https://www.hfea.gov.uk/choose-a-clinic/clinic-search/results/94/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="HFEA: UK fertility regulator">
+    <meta property="og:description" content="We are the UK's independent regulator of fertility treatment and research using human embryos.">
+    <meta property="og:image" content="https://www.hfea.gov.uk/theme/assets/images/open-graph-meta-tags/hfea-homepage.jpg">
+    <meta property="og:image:alt" content="Image for Human Fertilisation & Embryology Authority (HFEA)">
+    <meta property="og:locale" content="en_GB">
+    <meta property="og:site_name" content="Human Fertilisation & Embryology Authority (HFEA)">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:creator" content="@HFEA">
+    <meta property="twitter:domain" content="hfea.gov.uk">
+    <meta property="twitter:url" content="https://www.hfea.gov.uk/choose-a-clinic/clinic-search/results/94/">
+    <meta name="twitter:title" content="HFEA: UK fertility regulator">
+    <meta name="twitter:description" content="We are the UK's independent regulator of fertility treatment and research using human embryos.">
+    <meta name="twitter:image" content="https://www.hfea.gov.uk/theme/assets/images/open-graph-meta-tags/hfea-homepage.jpg">
+    <meta name="twitter:image:alt" content="Image for Human Fertilisation & Embryology Authority (HFEA)">
+    <meta name="twitter:site" content="@HFEA">
+    <meta name="description" content="Barts Health Centre for Reproductive Medicine has been licensed by us since 1992 and offers all fertility treatments.">
+        <meta property="og:url" content="https://www.hfea.gov.uk/choose-a-clinic/clinic-search/results/94/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Clinic profile for Barts Health Centre for Reproductive Medicine | HFEA">
+    <meta property="og:description" content="Barts Health Centre for Reproductive Medicine has been licensed by us since 1992 and offers all fertility treatments.">
+    <meta property="og:image" content="https://ifqlive.blob.core.windows.net/images/94Profile">
+    <meta property="og:image:alt" content="Image for Barts Health Centre for Reproductive Medicine | HFEA">
+    <meta property="og:locale" content="en_GB">
+    <meta property="og:site_name" content="Human Fertilisation & Embryology Authority (HFEA)">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:creator" content="@HFEA">
+    <meta property="twitter:domain" content="hfea.gov.uk">
+        <meta property="twitter:url" content="https://www.hfea.gov.uk/choose-a-clinic/clinic-search/results/94/">
+    <meta name="twitter:title" content="Clinic profile for Barts Health Centre for Reproductive Medicine | HFEA">
+    <meta name="twitter:description" content="Barts Health Centre for Reproductive Medicine has been licensed by us since 1992 and offers all fertility treatments.">
+    <meta name="twitter:image" content="https://ifqlive.blob.core.windows.net/images/94Profile">
+    <meta name="twitter:image:alt" content="Image for Barts Health Centre for Reproductive Medicine | HFEA">
+    <meta name="twitter:site" content="@HFEA">
+
+
+    <style>
+        .treatments-container {
+            display: flex;
+            gap: 1em;
+            align-items: center;
+            margin-bottom: 1em;
+        }
+
+            .treatments-container p {
+                margin-top: 0;
+                margin-bottom: 0;
+            }
+
+        .treatment-add-on {
+            /* background-color: #00B050; */
+            height: 70px;
+            width: 70px;
+            min-width: 70px;
+            margin: 0 auto;
+            border: 2px solid #000;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+            .treatment-add-on.individual-page {
+                width: 100px;
+                height: 100px;
+            }
+
+            .treatment-add-on:after {
+                color: #fff;
+                -webkit-text-stroke-color: #000;
+                -webkit-text-stroke-width: 2px;
+                font-size: 4.5em;
+                font-weight: 700;
+                /* background-color: pink; */
+                /* Maybe not */
+            }
+
+            .treatment-add-on.small {
+                max-width: 50px;
+                /*max-height: 50px;*/
+                margin: 0;
+            }
+
+                .treatment-add-on.small:after {
+                    font-size: 450%;
+                }
+
+        .green {
+            background-color: #00B050;
+        }
+
+        .yellow {
+            background-color: #FFC000;
+            padding-bottom: 0.4em;
+        }
+
+        .grey {
+            background-color: #BFBFBF;
+        }
+
+        .black {
+            background-color: #000;
+        }
+
+        .red {
+            background-color: #FF0000;
+        }
+
+        .treatment-add-on :after {
+            vertical-align: baseline !important;
+            line-height: 100%;
+        }
+
+        .green:after {
+            content: '+';
+        }
+
+        .yellow:after {
+            content: '\00B1';
+        }
+
+        .grey:after {
+            content: '?';
+        }
+
+        .black:after {
+            content: '0';
+            font-family: Consolas;
+        }
+
+        .red:after {
+            content: '!';
+        }
+
+        .sr-only {
+            display: none;
+        }
+
+        .individual-treatment-add-on thead tr {
+            background-color: #008385;
+            color: #fff;
+        }
+
+        .individual-treatment-add-on thead th {
+            font-weight: 400;
+            padding: 4px 8px;
+            text-align: center;
+        }
+
+        .individual-treatment-add-on td:first-child {
+            width: 25%;
+        }
+
+        .individual-treatment-add-on tbody td {
+            padding: 4px 8px;
+            text-align: center;
+            vertical-align: top;
+        }
+
+            .individual-treatment-add-on tbody td:nth-child(2) {
+                text-align: left;
+            }
+
+            .individual-treatment-add-on tbody td .treatment-add-on.small {
+                margin: 8px auto 0;
+            }
+    </style>
+</head>
+<body class="body-no-js html no-sidebars front cafcclinicprofile
+       ">
+    
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W3VXC84"
+                height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+
+    <div class="page">
+        
+
+<div class="cookie">
+    <div class="container">
+<form action="/choose-a-clinic/clinic-search/results/94/" enctype="multipart/form-data" id="form6f2c36b4dd7a41e2b7d96058a288bc2a" method="post">            <div class="row">
+                <div class="col-md-12">
+                    <h3 class="headrer">HFEA.gov.uk uses cookies to deliver content and make improvements to the website.</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2 col-md-offset-8">
+                    <input type="hidden" name="acceptSessionCookie" id="acceptSessionCookie" />
+                    <input type="hidden" name="acceptAnalytics" id="acceptAnalytics" />
+                    <input type="hidden" name="acceptYouTube" id="acceptYouTube" />
+                    <input type="hidden" name="acceptGoogleMaps" id="acceptGoogleMaps" />
+
+                    <button id="cookieSubmit" type="submit" class=" btn hfea-btn bg_teal">Accept cookies</button>
+
+
+                </div>
+                <div class="col-md-2">
+                    <a Class="btn hfea-btn configureButton" href="/umbraco/surface/cookieacceptancesurface/AcceptPolicyGet">Configure cookies</a>
+                </div>
+            </div>
+<input name="__RequestVerificationToken" type="hidden" value="CfDJ8IdgjkGxaL5ArayYQ-YHnOuu9CBFvRY6zsNjQROj9USAvUN6kSbA14Qmth9D7bpNmaUKjjX0v6GBIuiQ_tTGBulFIQ-1HzzY2kVxrodH3PaOi8Su153XoSVRStEr6lwsvfizB_0pHwSzRvX1KSIs0Ik" /><input name="ufprt" type="hidden" value="CfDJ8IdgjkGxaL5ArayYQ-YHnOvNzV8026nIR91E1AgRcB_zaTe7S3fkG-Do4n4pEh6paCS6ly70uZaDz41pyYEXj4syRAkEDEbjq8q_1tXUosUo8egIQgxnRjtpvy0AL0gpknCsCke47S7FjZuvwg0pOaZNCMk2u-UcrQLpGXFkQj8z" /></form>    </div>
+
+
+    <style type="text/css">
+        .configureButton {
+            background-color: #ddd;
+        }
+    </style>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#cookieSubmit").on('click', function () {
+                $("#acceptSessionCookie").val(true);
+                $("#acceptAnalytics").val(true);
+                $("#acceptYouTube").val(true);
+                $("#acceptGoogleMaps").val(true);
+
+            });
+
+        });
+
+    </script>
+
+
+</div>
+
+        <a class="sr-only sr-only-focusable" href="#main">Skip to main content</a>
+<header class="site-header">
+    <div class="container">
+        <div class="col-lg-4 col-lhs">
+            <a class="logo" href="/">
+                <img class="defaultLogo" src="/theme/assets/images/logos/Logo.png" alt="Human Fertilisation &amp; Embryology Authority | Home">
+                <img class="stickyLogo" src="/theme/assets/images/logos/stickyLogo.jpg" style="display: none;" aria-hidden="true" alt="Human Fertilisation &amp; Embryology Authority | Home">
+            </a>
+            <a href="/" class="mobile-menu">
+                <span class="sr-only">Menu toggle</span>
+                <span class="glyphicon glyphicon-menu-hamburger"></span>
+            </a>
+        </div>
+        <div class="col-lg-8 col-rhs">
+            <div class="">
+                <div class="col masthead-links">
+                    <a href="/">Home</a>
+                    <a href="/contact-us">Contact us</a>
+                </div>
+                <div class="col rhs">
+                        
+
+<form action="/choose-a-clinic/clinic-search/results/94/" class="search" enctype="multipart/form-data" id="search-form-simple-search" method="post">    <div class="large-search">
+        <label class="sr-only" for="SearchKeywords">Search for a treatment</label>
+        <div class="inputs">
+            <input autocomplete="off" class="ui-autocomplete-input" id="SearchKeywords" name="SearchParams.SearchKeywords" Title="Enter your search terms" type="text" value="" />
+            <button class="search-button" name="SearchKeywordsBtn" type="submit">Search</button>
+        </div>
+    </div>
+<input name="__RequestVerificationToken" type="hidden" value="CfDJ8IdgjkGxaL5ArayYQ-YHnOuu9CBFvRY6zsNjQROj9USAvUN6kSbA14Qmth9D7bpNmaUKjjX0v6GBIuiQ_tTGBulFIQ-1HzzY2kVxrodH3PaOi8Su153XoSVRStEr6lwsvfizB_0pHwSzRvX1KSIs0Ik" /><input name="ufprt" type="hidden" value="CfDJ8IdgjkGxaL5ArayYQ-YHnOu_beRh0CQBNwzKzPkSTwQdmmQuciWXunK-Bnj_z_QjFXQT36vb4gzsGygZ1kyEeq5eVPPH9X876Hv8UqXd5Aft4wJmDo9PZ52cRBX7DGfyk1ThehhdFyICgxYFOhxyKo19Jtbgbt-LoxAhLYmCUKdH" /></form>
+
+
+                 
+                </div>
+            </div>
+            <nav class="primary-nav clearfix">
+                <ul class="list-unstyled list-inline">
+                        <li class="auto_height primary-li">
+                            <a href="/i-am/" aria-label="Fertility information tailored for you">
+                                I am...                                
+                            </a>
+                                <div class="subnav">
+                                    <div class="container">
+                                        <ul class="list-unstyled row">
+                                                <li class="col-lg-4 column col">
+                                                    <a href="/i-am/heterosexual-couples/">
+In a heterosexual couple                                                    </a>
+                                                </li>
+                                                <li class="col-lg-4 column col">
+                                                    <a href="/i-am/fertility-treatment-for-lgbt-people/">
+LGBT&#x2B;                                                    </a>
+                                                </li>
+                                                <li class="col-lg-4 column col">
+                                                    <a href="/i-am/single-women/">
+A single woman                                                    </a>
+                                                </li>
+                                                <li class="col-lg-4 column col">
+                                                    <a href="/i-am/women-over-38/">
+A woman over 38                                                    </a>
+                                                </li>
+                                                <li class="col-lg-4 column col">
+                                                    <a href="/i-am/i-have-a-genetic-disease-in-my-family/">
+Researching a genetic disease in my family                                                    </a>
+                                                </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                        </li>
+                        <li class="auto_height primary-li">
+                            <a href="/treatments/" aria-label="Treatments">
+                                Treatments                                
+                            </a>
+                                <div class="subnav">
+                                    <div class="container">
+                                        <ul class="list-unstyled row">
+                                                <li class="col-lg-4 column col">
+                                                    <a href="/treatments/explore-all-treatments/">
+Explore fertility treatments                                                    </a>
+                                                </li>
+                                                <li class="col-lg-4 column col">
+                                                    <a href="/treatments/fertility-preservation/">
+Fertility preservation                                                    </a>
+                                                </li>
+                                                <li class="col-lg-4 column col">
+                                                    <a href="/treatments/embryo-testing-and-treatments-for-disease/">
+Embryo testing and treatments for disease                                                    </a>
+                                                </li>
+                                                <li class="col-lg-4 column col">
+                                                    <a href="/treatments/covid-19-and-fertility-treatment/">
+COVID-19 and fertility treatment                                                    </a>
+                                                </li>
+                                                <li class="col-lg-4 column col">
+                                                    <a href="/treatments/treatment-add-ons/">
+Treatment add-ons                                                    </a>
+                                                </li>
+                                                <li class="col-lg-4 column col">
+                                                    <a href="/treatments/hiv/">
+Sperm, egg and embryo donation from people living with HIV with an undetectable viral load                                                    </a>
+                                                </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                        </li>
+                        <li class="auto_height primary-li">
+                            <a href="/donation/" aria-label="Donation">
+                                Donation                                
+                            </a>
+                                <div class="subnav">
+                                    <div class="container">
+                                        <ul class="list-unstyled row">
+                                                <li class="col-lg-4 column col">
+                                                    <a href="/donation/donors/">
+Donors                                                    </a>
+                                                </li>
+                                                <li class="col-lg-4 column col">
+                                                    <a href="/donation/finding-out-about-your-donor/">
+Finding out about your donor                                                    </a>
+                                                </li>
+                                                <li class="col-lg-4 column col">
+                                                    <a href="/donation/talking-to-your-family-about-your-donation/">
+Talking to your family about your donation                                                    </a>
+                                                </li>
+                                                <li class="col-lg-4 column col">
+                                                    <a href="/donation/donors/donating-to-research/">Donating to research</a>
+                                                </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                        </li>
+                        <li class="auto_height primary-li">
+                            <a href="/choose-a-clinic/" aria-label="Choose a fertility clinic">
+                                Choose a clinic                                
+                            </a>
+                                <div class="subnav">
+                                    <div class="container">
+                                        <ul class="list-unstyled row">
+                                                <li class="col-lg-4 column col">
+                                                    <a href="/choose-a-clinic/clinic-search/">
+Fertility clinic search                                                    </a>
+                                                </li>
+                                                <li class="col-lg-4 column col">
+                                                    <a href="/choose-a-clinic/rate-your-clinic/">
+Rate your clinic                                                    </a>
+                                                </li>
+                                                <li class="col-lg-4 column col">
+                                                    <a href="/choose-a-clinic/latest-decisions-on-clinics/">
+Latest decisions on clinics                                                    </a>
+                                                </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                        </li>
+                        <li class="auto_height primary-li">
+                            <a href="/about-us/" aria-label="About us">
+                                About us                                
+                            </a>
+                                <div class="subnav">
+                                    <div class="container">
+                                        <ul class="list-unstyled row">
+                                                <li class="col-lg-4 column col">
+                                                    <a href="/about-us/how-we-regulate/">
+How we regulate                                                    </a>
+                                                </li>
+                                                <li class="col-lg-4 column col">
+                                                    <a href="/about-us/our-authority-committees-and-panels/">
+Our Authority, committees and panels                                                    </a>
+                                                </li>
+                                                <li class="col-lg-4 column col">
+                                                    <a href="/about-us/our-people/">
+Our people                                                    </a>
+                                                </li>
+                                                <li class="col-lg-4 column col">
+                                                    <a href="/about-us/working-with-others/">
+Our partners                                                    </a>
+                                                </li>
+                                                <li class="col-lg-4 column col">
+                                                    <a href="/about-us/publications/">
+Publications                                                    </a>
+                                                </li>
+                                                <li class="col-lg-4 column col">
+                                                    <a href="/about-us/news-and-press-releases/">
+News and press releases                                                    </a>
+                                                </li>
+                                                <li class="col-lg-4 column col">
+                                                    <a href="/about-us/our-campaign-to-reduce-multiple-births/">
+Our campaign to reduce multiple births                                                    </a>
+                                                </li>
+                                                <li class="col-lg-4 column col">
+                                                    <a href="/about-us/data-research/">
+Data research                                                    </a>
+                                                </li>
+                                                <li class="col-lg-4 column col">
+                                                    <a href="/about-us/our-blog/">
+Our blog                                                    </a>
+                                                </li>
+                                                <li class="col-lg-4 column col">
+                                                    <a href="/about-us/a-z-fertility-glossary/">
+A-Z fertility glossary                                                    </a>
+                                                </li>
+                                                <li class="col-lg-4 column col">
+                                                    <a href="/about-us/modernising-the-regulation-of-fertility-treatment-and-research-involving-human-embryos/">
+Modernising Fertility Law                                                    </a>
+                                                </li>
+                                                <li class="col-lg-4 column col">
+                                                    <a href="/about-us/hfea-dashboard/">
+HFEA dashboard                                                    </a>
+                                                </li>
+                                                <li class="col-lg-4 column col">
+                                                    <a href="/about-us/media-centre/">
+Media centre                                                    </a>
+                                                </li>
+                                                <li class="col-lg-4 column col">
+                                                    <a href="/about-us/working-with-others/patient-engagement-forum/">Patient Engagement Forum</a>
+                                                </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                        </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</header>
+        
+
+        <a name="main" id="main" tabindex="-1"></a>
+        <div id="main-content" class="mb-70">
+            
+
+
+
+<div>
+    
+
+
+</div>
+    <div style="position:fixed; right:2em; top:20em;">
+        
+
+    <div class="compare-add submit-btn-wrapper">
+<form action="/choose-a-clinic/clinic-search/results/94/" enctype="multipart/form-data" id="form549f774ae8f0482e9f13cf1815c75ee2" method="post">            <button type="submit" class="submit-btn btn btn-primary">Compare <span class="sr-only">Barts Health Centre for Reproductive Medicine</span> +</button>
+<input name="__RequestVerificationToken" type="hidden" value="CfDJ8IdgjkGxaL5ArayYQ-YHnOuu9CBFvRY6zsNjQROj9USAvUN6kSbA14Qmth9D7bpNmaUKjjX0v6GBIuiQ_tTGBulFIQ-1HzzY2kVxrodH3PaOi8Su153XoSVRStEr6lwsvfizB_0pHwSzRvX1KSIs0Ik" /><input name="ufprt" type="hidden" value="CfDJ8IdgjkGxaL5ArayYQ-YHnOszm1hxuwsEY3tpUPyUCcxjQTX9y8poRpn5aw-i4LPuHqUeOUmvyf7UV3s6B4vHjT85Lr8FGzUE8maFpU1_7XnRxCDTxjR1X_P8U5rI0TOmdawz0AVcXKwfLNHy4yZC7ndmdWPZ3j24PcbiTIXVKm7_mETyuMJCPmWLZdO7U9qmP85h6sk0AJ8V8ilGgMP18si9it9vWVnWphLSpnZs5WGz" /></form>    </div>
+
+
+    </div>
+
+<div class="background-page-header bg_light_buff">
+    <div class="container">
+        
+
+    <style type="text/css">
+        .cafc-strong {
+            font-weight: 700;
+        }    
+    </style>
+
+<h1>Barts Health Centre for Reproductive Medicine</h1>
+<p class="lead">
+    Barts Health Centre for Reproductive Medicine has been licensed by us since 1992 and offers all fertility treatments.
+</p>
+<div class="row pb-20">
+    <div class="col-md-3">
+        <img class="img-responsive" src="https://ifqlive.blob.core.windows.net/images/94Profile" alt="Image for Barts Health Centre for Reproductive Medicine">
+    </div>
+
+    <div class="col-md-9">
+        <div class="row ratings">
+            
+    <div class="col-lg-4 inspection-rating">
+        <div>
+
+                <h2>
+                    <a href="#inspection">Inspection rating</a> 
+    <a href="#" data-toggle="tooltip" title="Our inspectors&#x27; rating of how the clinic meets our standards.">
+        <span class="hidden">Description</span>
+        <span class="tooltip-icon" aria-hidden="true">i</span>
+        <span class="sr-only">Information: Our inspectors&#x27; rating of how the clinic meets our standards.</span>
+    </a>
+
+                </h2>
+
+            
+<div class='rating-dot'>
+    <script>console.log('');</script>
+            <span class="rating rating-full"></span>
+            <span class="rating rating-full"></span>
+            <span class="rating rating-full"></span>
+            <span class="rating rating-full"></span>
+            <span class="rating rating-full"></span>
+</div>
+    <p>5 / 5</p>
+
+        </div>
+            <a class="scroll-to" href="#inspection-rating">View inspection rating</a>
+    </div>
+
+<div class="col-lg-4 user-rating">
+    <div>
+
+            <h2>
+                <a href="#rating">Patient rating</a> 
+    <a href="#" data-toggle="tooltip" title="Patients&#x27; and donors&#x27; rating based on their experience of care.">
+        <span class="hidden">Description</span>
+        <span class="tooltip-icon" aria-hidden="true">i</span>
+        <span class="sr-only">Information: Patients&#x27; and donors&#x27; rating based on their experience of care.</span>
+    </a>
+
+            </h2>
+
+        <div class="star-container star-container-grey-2">
+            
+<div class="stars">
+                <div class="star">
+
+                    <span class="fill fill-full"></span>
+                </div>
+                <div class="star">
+
+                    <span class="fill fill-full"></span>
+                </div>
+                <div class="star">
+
+                    <span class="fill fill-full"></span>
+                </div>
+                <div class="star">
+
+                </div>
+                <div class="star">
+
+                    <span  class="fill"></span>
+                </div>
+</div>
+        </div>
+        <p>
+            3 / 5 based on 9 ratings
+        </p>
+            <a href="/choose-a-clinic/clinic-search/results/94/patient-rating/">Rate this clinic</a>
+    </div>
+        <a class="scroll-to" href="#patient-ratings">View patient rating</a>
+</div>
+
+    <div class="col-lg-4">
+        <div>
+
+                    <h2>
+                        <a href="#statistics">IVF Birth Rate</a>
+                    </h2>
+
+                <a class="search-page-link scroll-to btn btn-primary" style="background-color:#c8da2a;border:none;position:relative" href="#birth-statistics">View birth statistics</a>
+        </div>
+
+    </div>
+
+
+        </div>
+    </div>
+</div>
+    </div>
+</div>
+
+<div class="container">
+    <h3 class="sr-only">Clinic profile accordion</h3>
+    <div class="panel-group accordion clinic-accordion" id="accordion" role="tablist" aria-multiselectable="true">
+        <!-- INSPECTOR RATING PANEL -->
+        <!-- Hidden inspector ratings -->
+            <a name="inspection"></a>
+
+
+
+    <div class="panel-hfea panel-default" id="inspection-rating">
+        <div class="panel-heading" role="tab" id="collapse-inspection-heading">
+            <h4 class="panel-title parent-panel-title">
+                <a role="button" class="accordion-toggle open" href="#collapse-inspection" aria-expanded="true" aria-controls="collapse-inspection">
+                    How do our inspectors rate the clinic? 
+                    <span class="sr-only">Click or press enter to show or hide content</span>
+                    <span class="chevron" aria-hidden="true"></span>
+                </a>
+            </h4>
+        </div>
+
+        <div id="collapse-inspection" data-parent="inspection-rating" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="collapse-inspection-heading">
+            <div class="panel-body ">
+                <div class="panel-intro row bg_light_blue">
+                    <p class="intro-text float-left">
+                        We inspect all clinics against our standards. This clinic&#x27;s inspection rating is:
+                    </p>
+                    <div class="rating-container float-right">
+                        <span class="patient-rating  float-left">
+                            <span class="sr-only">Overall score for </span>
+                            <span class="number">
+5                            </span>
+                        </span>
+                        <div class="float-left">
+                            
+<div class='rating-dot'>
+            <span class="rating rating-full"></span>
+            <span class="rating rating-full"></span>
+            <span class="rating rating-full"></span>
+            <span class="rating rating-full"></span>
+            <span class="rating rating-full"></span>
+</div>
+        <p>5 / 5</p>
+
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row row-no-m panel-main-body">
+                    <div class="col-md-7">
+                        <p>
+                            
+                            All clinics must have a licence to operate. Our inspectors visit the clinic and look at the laboratory and equipment, the clinic&#x2019;s consent and other procedures and the patient information. We also interview patients for their views. We use the inspector&#x2019;s assessment to decide how long the licence should be. This determines the rating.
+                        </p>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="inspection-details">
+                                <p class="orange-border">Last inspection: 15 March 2022</p>
+                                <p>Licensed until: 30 September 2026</p>
+                        </div>
+                    </div>
+                </div>
+                    <div class="row row-no-m panel-main-body">
+                        <div class="col-sm-12">
+                            <h4></h4>
+
+                            <ul class="list-unstyled">
+                                    <li>
+                                                <a class="hfea-v2 teal-white" href="https://ifqlive.blob.core.windows.net/inspectiondocuments/8114.pdf" target="_blank">Inspection report and minutes- Interim</a>
+        <div><span>13 May 2024</span></div>
+        <div><span>PDF | 352 Kb</span></div>
+
+                                    </li>
+                                    <li>
+                                                <a class="hfea-v2 teal-white" href="https://ifqlive.blob.core.windows.net/inspectiondocuments/7678.pdf" target="_blank">Inspection report and minutes- Renewal</a>
+        <div><span>05 July 2022</span></div>
+        <div><span>PDF | 606 Kb</span></div>
+
+                                    </li>
+                                    <li>
+                                                <a class="hfea-v2 teal-white" href="https://ifqlive.blob.core.windows.net/inspectiondocuments/7452.pdf" target="_blank">Inspection report and minutes- Interim</a>
+        <div><span>11 October 2021</span></div>
+        <div><span>PDF | 433 Kb</span></div>
+
+                                    </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="panel-group accordion child-accordion statistics" id="archiveReports" role="tablist">
+                        <div class="panel-hfea panel-default">
+                            <div class="panel-heading" role="tab" id="archiveReports-subheading">
+                                <h5 class="panel-title">
+                                    <a role="button" class="accordion-toggle" data-parent="#childaccordionInspect" href="#archiveReports-contentPanel" aria-expanded="false" aria-controls="archiveReports-contentPanel">
+                                        <span class="title-text">
+                                            Reports archive
+                                        </span>
+                                        <span class="sr-only">Click or press enter to show or hide content</span>
+                                        <span class="chevron" aria-hidden="true"></span>
+                                    </a>
+                                </h5>
+                            </div>
+                            <div id="archiveReports-contentPanel" class="panel-collapse collapse" role="tabpanel" aria-labelledby="archiveReports-subheading">
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-lg-8">
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-8">
+                                            <ul class="list-unstyled">
+                                                    <li>
+                                                                <a class="hfea-v2 teal-white" href="https://ifqlive.blob.core.windows.net/inspectiondocuments/7228.pdf" target="_blank">Licence Committee minutes- Other</a>
+        <div><span>23 March 2021</span></div>
+        <div><span>PDF | 247 Kb</span></div>
+
+                                                    </li>
+                                                    <li>
+                                                                <a class="hfea-v2 teal-white" href="https://ifqlive.blob.core.windows.net/inspectiondocuments/6964.pdf" target="_blank">Licence Committee minutes- Special Direction for export</a>
+        <div><span>17 March 2020</span></div>
+        <div><span>PDF | 187 Kb</span></div>
+
+                                                    </li>
+                                                    <li>
+                                                                <a class="hfea-v2 teal-white" href="https://ifqlive.blob.core.windows.net/inspectiondocuments/6947.pdf" target="_blank">Inspection report and minutes- Targeted unannounced</a>
+        <div><span>03 March 2020</span></div>
+        <div><span>PDF | 415 Kb</span></div>
+
+                                                    </li>
+                                                    <li>
+                                                                <a class="hfea-v2 teal-white" href="https://ifqlive.blob.core.windows.net/inspectiondocuments/6687.pdf" target="_blank">Inspection report and minutes- Incident investigation</a>
+        <div><span>05 February 2019</span></div>
+        <div><span>PDF | 117 Kb</span></div>
+
+                                                    </li>
+                                                    <li>
+                                                                <a class="hfea-v2 teal-white" href="https://ifqlive.blob.core.windows.net/inspectiondocuments/6618.pdf" target="_blank">Licence Committee minutes- Special Direction for export</a>
+        <div><span>04 October 2018</span></div>
+        <div><span>PDF | 57 Kb</span></div>
+
+                                                    </li>
+                                                    <li>
+                                                                <a class="hfea-v2 teal-white" href="https://ifqlive.blob.core.windows.net/inspectiondocuments/6611.pdf" target="_blank">Inspection report and minutes- Renewal</a>
+        <div><span>26 September 2018</span></div>
+        <div><span>PDF | 380 Kb</span></div>
+
+                                                    </li>
+                                                    <li>
+                                                                <a class="hfea-v2 teal-white" href="https://ifqlive.blob.core.windows.net/inspectiondocuments/6515.pdf" target="_blank">Inspection report and minutes- Variation of premises</a>
+        <div><span>17 May 2018</span></div>
+        <div><span>PDF | 467 Kb</span></div>
+
+                                                    </li>
+                                                    <li>
+                                                                <a class="hfea-v2 teal-white" href="https://ifqlive.blob.core.windows.net/inspectiondocuments/6228.pdf" target="_blank">Licence Committee minutes- Variation of PR/LH</a>
+        <div><span>29 March 2017</span></div>
+        <div><span>PDF | 209 Kb</span></div>
+
+                                                    </li>
+                                                    <li>
+                                                                <a class="hfea-v2 teal-white" href="https://ifqlive.blob.core.windows.net/inspectiondocuments/6138.pdf" target="_blank">Inspection report and minutes- Interim</a>
+        <div><span>24 October 2016</span></div>
+        <div><span>PDF | 167 Kb</span></div>
+
+                                                    </li>
+                                                    <li>
+                                                                <a class="hfea-v2 teal-white" href="https://ifqlive.blob.core.windows.net/inspectiondocuments/5866.pdf" target="_blank">Licence Committee minutes- Variation of PR/LH</a>
+        <div><span>17 August 2015</span></div>
+        <div><span>PDF | 49 Kb</span></div>
+
+                                                    </li>
+                                                    <li>
+                                                                <a class="hfea-v2 teal-white" href="https://ifqlive.blob.core.windows.net/inspectiondocuments/5628.pdf" target="_blank">Licence Committee minutes- Variation to change centre name</a>
+        <div><span>31 July 2014</span></div>
+        <div><span>PDF | 34 Kb</span></div>
+
+                                                    </li>
+                                                    <li>
+                                                                <a class="hfea-v2 teal-white" href="https://ifqlive.blob.core.windows.net/inspectiondocuments/5624.pdf" target="_blank">Inspection report and minutes- Renewal</a>
+        <div><span>24 July 2014</span></div>
+        <div><span>PDF | 414 Kb</span></div>
+
+                                                    </li>
+                                                    <li>
+                                                                <a class="hfea-v2 teal-white" href="https://ifqlive.blob.core.windows.net/inspectiondocuments/5625.pdf" target="_blank">Inspection report and minutes- Other</a>
+        <div><span>24 July 2014</span></div>
+        <div><span>PDF | 312 Kb</span></div>
+
+                                                    </li>
+                                                    <li>
+                                                                <a class="hfea-v2 teal-white" href="https://ifqlive.blob.core.windows.net/inspectiondocuments/5555.pdf" target="_blank">Inspection report and minutes- Interim</a>
+        <div><span>23 January 2014</span></div>
+        <div><span>PDF | 293 Kb</span></div>
+
+                                                    </li>
+                                                    <li>
+                                                                <a class="hfea-v2 teal-white" href="https://ifqlive.blob.core.windows.net/inspectiondocuments/5493.pdf" target="_blank">Inspection report and minutes- Interim</a>
+        <div><span>03 October 2013</span></div>
+        <div><span>PDF | 299 Kb</span></div>
+
+                                                    </li>
+                                                    <li>
+                                                                <a class="hfea-v2 teal-white" href="https://ifqlive.blob.core.windows.net/inspectiondocuments/4839.pdf" target="_blank">Licence Committee minutes- Variation of PR/LH</a>
+        <div><span>05 October 2012</span></div>
+        <div><span>PDF | 443 Kb</span></div>
+
+                                                    </li>
+                                                    <li>
+                                                                <a class="hfea-v2 teal-white" href="https://ifqlive.blob.core.windows.net/inspectiondocuments/4742.pdf" target="_blank">Licence Committee minutes- Variation of PR/LH</a>
+        <div><span>01 June 2012</span></div>
+        <div><span>PDF | 77 Kb</span></div>
+
+                                                    </li>
+                                                    <li>
+                                                                <a class="hfea-v2 teal-white" href="https://ifqlive.blob.core.windows.net/inspectiondocuments/597.pdf" target="_blank">Inspection report and minutes</a>
+        <div><span>20 December 2011</span></div>
+        <div><span>PDF | 833 Kb</span></div>
+
+                                                    </li>
+                                                    <li>
+                                                                <a class="hfea-v2 teal-white" href="https://ifqlive.blob.core.windows.net/inspectiondocuments/4613.pdf" target="_blank">Licence Committee minutes- Interim</a>
+        <div><span>23 September 2011</span></div>
+        <div><span>PDF | 726 Kb</span></div>
+
+                                                    </li>
+                                                    <li>
+                                                                <a class="hfea-v2 teal-white" href="https://ifqlive.blob.core.windows.net/inspectiondocuments/379.pdf" target="_blank">Inspection report and minutes</a>
+        <div><span>30 July 2009</span></div>
+        <div><span>PDF | 877 Kb</span></div>
+
+                                                    </li>
+                                                    <li>
+                                                                <a class="hfea-v2 teal-white" href="https://ifqlive.blob.core.windows.net/inspectiondocuments/178.pdf" target="_blank">Inspection report and minutes</a>
+        <div><span>24 July 2008</span></div>
+        <div><span>PDF | 200 Kb</span></div>
+
+                                                    </li>
+                                                    <li>
+                                                                <a class="hfea-v2 teal-white" href="https://ifqlive.blob.core.windows.net/inspectiondocuments/179.pdf" target="_blank">Inspection report and minutes</a>
+        <div><span>15 August 2007</span></div>
+        <div><span>PDF | 167 Kb</span></div>
+
+                                                    </li>
+                                                    <li>
+                                                                <a class="hfea-v2 teal-white" href="https://ifqlive.blob.core.windows.net/inspectiondocuments/380.pdf" target="_blank">Inspection report and minutes</a>
+        <div><span>08 June 2006</span></div>
+        <div><span>PDF | 132 Kb</span></div>
+
+                                                    </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div> <!-- END OF SUB ACCORDION -->
+                        </div>
+                    </div>
+
+            </div>
+        </div>
+    </div>
+        <!-- PATIENT RATING PANEL -->
+            <a name="rating"></a>
+
+
+    <div class="panel-hfea panel-default" id="patient-ratings">
+        <div class="panel-heading" role="tab" id="collapse-patient-heading">
+            <h4 class="panel-title parent-panel-title">
+                <a role="button" class="accordion-toggle open" data-parent="#accordion" href="#collapse-patient" aria-expanded="true" aria-controls="collapse-patient">
+                    How do existing patients rate the clinic? 
+                    <span class="chevron"></span>
+                </a>
+            </h4>
+        </div>
+        <div id="collapse-patient" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="collapse-patient-heading">
+            <div class="panel-body">
+                <div class="panel-intro row bg_light_blue">
+                    <p class="intro-text float-left">
+                        We ask current and former patients to rate the clinic based on their experience. This clinic&#x2019;s patient rating is: 
+                    </p>
+                    <div class="rating-container float-left">
+                        <span class="patient-rating float-left">
+                            <span class="number">
+3                            </span>
+                        </span>
+                        <div class="stars float-left">
+                            <div class="star-container star-container-blue">
+                                
+<div class="stars">
+                <div class="star">
+
+                    <span class="fill fill-full"></span>
+                </div>
+                <div class="star">
+
+                    <span class="fill fill-full"></span>
+                </div>
+                <div class="star">
+
+                    <span class="fill fill-full"></span>
+                </div>
+                <div class="star">
+
+                </div>
+                <div class="star">
+
+                    <span  class="fill"></span>
+                </div>
+</div>
+                            </div>
+                            <p>
+                                Based on 9 ratings
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row patient-rating-questions row-no-m panel-main-body">
+                            <div class="col-lg-6 question">
+                                <p class="q-text">
+                                    How likely are you to recommend this clinic to friends and family if they needed similar care or treatment?
+                                </p>
+                                <p class="sr-only">2 stars</p>
+                                <div class="star-container star-container-white">
+                                    
+<div class="stars">
+                <div class="star">
+
+                    <span class="fill fill-full"></span>
+                </div>
+                <div class="star">
+
+                    <span class="fill fill-full"></span>
+                </div>
+                <div class="star">
+
+                </div>
+                <div class="star">
+
+                    <span  class="fill"></span>
+                </div>
+                <div class="star">
+
+                    <span  class="fill"></span>
+                </div>
+</div>
+                                </div>
+                                <p>
+                                    Based on 9 ratings
+                                </p>
+                            </div>
+                            <div class="col-lg-6 question">
+                                <p class="q-text">
+                                    To what extent did you feel you were treated with privacy and dignity?
+                                </p>
+                                <p class="sr-only">3 stars</p>
+                                <div class="star-container star-container-white">
+                                    
+<div class="stars">
+                <div class="star">
+
+                    <span class="fill fill-full"></span>
+                </div>
+                <div class="star">
+
+                    <span class="fill fill-full"></span>
+                </div>
+                <div class="star">
+
+                    <span class="fill fill-full"></span>
+                </div>
+                <div class="star">
+
+                </div>
+                <div class="star">
+
+                    <span  class="fill"></span>
+                </div>
+</div>
+                                </div>
+                                <p>
+                                    Based on 9 ratings
+                                </p>
+                            </div>
+                            <div class="col-lg-6 question">
+                                <p class="q-text">
+                                    To what extent did you feel you understood everything that was happening throughout your treatment?
+                                </p>
+                                <p class="sr-only">3 stars</p>
+                                <div class="star-container star-container-white">
+                                    
+<div class="stars">
+                <div class="star">
+
+                    <span class="fill fill-full"></span>
+                </div>
+                <div class="star">
+
+                    <span class="fill fill-full"></span>
+                </div>
+                <div class="star">
+
+                    <span class="fill fill-full"></span>
+                </div>
+                <div class="star">
+
+                </div>
+                <div class="star">
+
+                    <span  class="fill"></span>
+                </div>
+</div>
+                                </div>
+                                <p>
+                                    Based on 9 ratings
+                                </p>
+                            </div>
+                            <div class="col-lg-6 question">
+                                <p class="q-text">
+                                    Was the level of empathy and understanding shown towards you by the clinic team?
+                                </p>
+                                <p class="sr-only">3 stars</p>
+                                <div class="star-container star-container-white">
+                                    
+<div class="stars">
+                <div class="star">
+
+                    <span class="fill fill-full"></span>
+                </div>
+                <div class="star">
+
+                    <span class="fill fill-full"></span>
+                </div>
+                <div class="star">
+
+                    <span class="fill fill-full"></span>
+                </div>
+                <div class="star">
+
+                </div>
+                <div class="star">
+
+                    <span  class="fill"></span>
+                </div>
+</div>
+                                </div>
+                                <p>
+                                    Based on 9 ratings
+                                </p>
+                            </div>
+        <div class="col-lg-6 question">
+            <p class="q-text">
+                Did you pay what you expected?
+            </p>
+                <p>
+                    Based on 6 ratings
+                </p>
+                <div class="rating-percentage">
+                            <div>
+            <div class="review-bar">
+                <div class="score" style="width:
+                    0%"></div>
+            </div>
+            <h5>
+                It was much cheaper
+                <span class="pull-right">
+                    0
+                </span>
+            </h5>
+        </div>
+
+                            <div>
+            <div class="review-bar">
+                <div class="score" style="width:
+                    16.67%"></div>
+            </div>
+            <h5>
+                It was slightly cheaper
+                <span class="pull-right">
+                    1
+                </span>
+            </h5>
+        </div>
+
+                            <div>
+            <div class="review-bar">
+                <div class="score" style="width:
+                    16.67%"></div>
+            </div>
+            <h5>
+                It was about right
+                <span class="pull-right">
+                    1
+                </span>
+            </h5>
+        </div>
+
+                            <div>
+            <div class="review-bar">
+                <div class="score" style="width:
+                    66.67%"></div>
+            </div>
+            <h5>
+                It was more expensive
+                <span class="pull-right">
+                    4
+                </span>
+            </h5>
+        </div>
+
+                            <div>
+            <div class="review-bar">
+                <div class="score" style="width:
+                    0%"></div>
+            </div>
+            <h5>
+                It was way above the estimate
+                <span class="pull-right">
+                    0
+                </span>
+            </h5>
+        </div>
+
+                </div>
+        </div>
+
+                </div>
+            </div>
+            <a class="hfea-btn btn btn-primary btn-lg bg_bright_green float-left mt-30" href="/choose-a-clinic/clinic-search/results/94/patient-rating/">Rate this clinic</a>
+        </div>
+    </div>
+
+
+        <!-- CLINIC BIRTH STATISTICS PANEL -->
+            <a name="statistics"></a>
+
+
+
+
+    <div class="panel-hfea panel-default" id="birth-statistics">
+        <div class="panel-heading" role="tab" id="collapse-stats-header">
+            <h4 class="panel-title parent-panel-title">
+                <a role="button" class="accordion-toggle open" data-parent="#accordion" href="#collapse-stats" aria-expanded="true" aria-controls="collapse-stats">
+                    What are the clinic&#x27;s statistics?
+                    <span class="sr-only">Click or press enter to show or hide content</span>
+                    <span class="chevron"></span>
+                </a>
+            </h4>
+        </div>
+        <div id="collapse-stats" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="collapse-stats-header">
+            <div class="panel-intro no-bg">
+                <p class="intro-text">We collect data about the treatments clinics carry out. See this clinic&#x2019;s latest statistics below.</p>
+            </div>
+            <!-- stats accordions-->
+            <!-- Accordian for statistics -->
+            <div class="panel-group accordion child-accordion statistics" id="childaccordionIVF" role="tablist">
+                    <!-- IVF BIRTHS-->
+                    <div class="panel-hfea panel-default">
+                        <div class="panel-heading" role="tab" id="subheadingOne">
+                            <h5 class="panel-title">
+                                <a role="button" class="accordion-toggle open" data-parent="#childaccordionIVF" href="#subcollapseOne" aria-expanded="true" aria-controls="subcollapseOne">
+                                    <span class="title-text">
+                                        What is the clinic&#x27;s IVF birth rate?
+                                    </span>
+                                    <span class="chevron"></span>
+                                </a>
+                            </h5>
+                        </div>
+                        <div id="subcollapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="subheadingOne">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-lg-12"><p>Find out a clinic’s IVF birth rates for:</p>
+<ul>
+<li>Births per embryo transferred</li>
+<li>Births per egg collection procedure</li>
+</ul>
+<p>As well as the clinic’s multiple birth rate.</p>
+<p>Whatever statistic you look at, it can’t tell you your individual chance of success (only your doctor can do that), but each statistic gives you an overall view of the clinic’s performance.</p>
+<!--<p>Find out a clinic’s IVF/ICSI rates for births per embryo transferred for all treatment types, and a separate figure for stimulated fresh own egg cycles only as well as the clinic’s multiple birth rate. For greater detail on clinic performance see their <a href="https://www.hfea.gov.uk/choose-a-clinic/clinic-search/results/295/statistics/" title="View detailed statistics for Bristol Centre for Reproductive Medicine">detailed statistics</a> below. You could look at other data such as pregnancy and birth rates per cycle of treatment and per embryo transferred (please note all detailed statistics data is currently from 2018/19 and will be updated in late 2025).</p>
+<p>Remember, whatever measure you focus on it can’t tell you your individual chance of success (only your doctor can do that), but each measure does give you a fair overall view of the clinic’s performance.</p>--></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <h4>Births per embryo transferred<!--<a href="#" data-toggle="tooltip" title="This rate shows the number of births (counted as a single birth event ie. twin births count as one live birth event) divided by the total number of embryos transferred">
+                                                <span class="hidden">Description</span>
+                                                <span class="tooltip-icon" aria-hidden="true">i</span>
+                                                <span class="sr-only">Information: This rate shows the number of births (counted as a single birth event ie. twin births count as one live birth event) divided by the total number of embryos transferred</span></a>--></h4>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12"><p>Births per embryo transferred is calculated using the number of births (twins or triplets are counted as one birth) divided by the number of embryos transferred, shown as a percentage, in a clinic over 12 months.</p>
+<p>This statistic is not usually used to show outcomes over more than one IVF cycle (known as a cumulative success rate) because it counts embryo(s) transferred as a single event.</p>
+<p><img alt="Births per embryo transferred." src="/media/1fglf05k/cafc-births-per-embryo-transferred.png"></p>
+<p>See the clinic’s rate <a href="#graphs" class="hfea-v2 teal-white">below</a>.</p>
+<p>Find out more about this statistic <a href="#more-about-the-statistics" class="hfea-v2 teal-white">here</a>.</p>
+<!--<p>We show the number of births per embryo transferred as it promotes embryo transfer practices that minimise the chances of twins, which carry health risks for the babies and the mother. We calculate the overall average births per embryo transferred for all treatments at the clinic (including fresh cycles, frozen transfers, treatments using donor eggs, and treatment using PGT-A) and also for the subset of <a href="/treatments/explore-all-treatments/ivf-options/">fresh stimulated embryos involving the patient’s own eggs.</p>
+<p>However, this measure does not incorporate the outcomes of patients who do not reach embryo transfer stage.</p>--></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <h4>Births per egg collection procedure</h4>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12"><p>Births per egg collection procedure is calculated by using the number of births (twins or triplets are counted as one birth) divided by the number of egg collection procedures that took place in a clinic over 12 months, shown as a percentage, over a two-year period.</p>
+<p>Births per egg collection procedure can be used to show outcomes from all embryo transfers from the same egg collection (known as a cumulative success rate).</p>
+<p><img alt="Births per egg collection procedure." src="/media/omhpbszl/cafc-births-per-egg-collection-procedure.png"></p>
+<p>See the clinic’s rate <a href="#graphs" class="hfea-v2 teal-white">below</a>.</p>
+<p>Find out more about this statistic <a href="#more-about-the-statistics" class="hfea-v2 teal-white">here</a>.</p></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <h4>Multiple birth rates<!--<a href="#" data-toggle="tooltip" title="This rate shows the number of multiple birth events (counted as a single multiple birth event ie. twin births, triplet births, quad births all count as one multiple birth) divided by the total number of birth events (counted as a single birth event ie. singleton, twin birth, triplet birth, quad births all count as one birth event)">
+                                                <span class="hidden">Description</span>
+                                                <span class="tooltip-icon" aria-hidden="true">i</span>
+                                                <span class="sr-only">Information: This rate shows the number of multiple birth events (counted as a single multiple birth event ie. twin births, triplet births, quad births all count as one multiple birth) divided by the total number of birth events (counted as a single birth event ie. singleton, twin birth, triplet birth, quad births all count as one birth event)</span></a>--></h4>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12"><p>For some people, having twins may seem like a wonderful thing, but multiple pregnancies are less safe for both patients and babies. That’s why we set a target for all clinics to have a multiple birth rate of 10% or lower – as of 2023 this has fallen to 3.4%, one of the lowest rates in the world.</p>
+<p>See the clinic’s rate <a href="#graphs" class="hfea-v2 teal-white">below</a>.</p>
+<!--<p>For some people, having twins may seem like a wonderful thing, but multiple pregnancies are less safe for both mother and babies. That’s why we’ve set a target for all clinics to have a multiple birth rate of 10% or lower – see how they’re performing below. The professional bodies have <a rel="noopener" href="https://www.tandfonline.com/doi/full/10.3109/14647273.2015.1083144" target="_blank" title="Visit the 'Elective Single Embryo Transfer: an update to UK Best Practice Guidelines' page" class="hfea-v2 teal-white">best practice guidelines</a> to assist clinics in determining when a single embryo should be transferred and the factors which can make double embryo transfer appropriate.</p>
+<h4>National rate</h4>
+<p>It may be tempting to obsess over success rates, but the most important thing to focus on is whether the clinic’s results are consistent with the national average. Try not to read anything into differences of a few percentage points above or below the national average, as these are often down to chance rather than being a reflection of a clinic’s abilities.</p>
+<h4>Reliability range</h4>
+<p>The reliability range shows how confident we are that a clinic will repeat its success rate in the future – the narrower the range, the more confident we can be. Large clinics normally have a narrower reliability range. That’s not because their data is more accurate but because their rate is less likely to be affected by small changes in the number of births in one year. Small clinics aren’t worse but their success rate is more likely to be affected by these kinds of changes.</p>--></div>
+                                </div>
+                                <h3 id="graphs" style="scroll-margin-top: 100px;">Births per embryo transferred &#x2013; excluding donor eggs and PGT-A</h3>
+
+                                <p> <span class="period dateperiod">01/01/2023 to 31/12/2023</span></p>
+                                <div class="caveat-text">
+                                    
+                                </div>
+                                <!-- RANGE CHARTS -->
+                                <noscript>
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Category</th>
+                                                <th>All</th>
+                                                <th>Under 38</th>
+                                                <th>38 and over</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    Births per embryo transferred &#x2013; excluding donor eggs and PGT-A
+                                                </td>
+                                                <td>27</td>
+                                                <td>32</td>
+                                                <td>17</td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>
+                                                    Births per egg collection &#x2013; excluding donor eggs, including PGT-A
+                                                </td>
+                                                <td>33</td>
+                                                <td>42</td>
+                                                <td>23</td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>Multiple birth rate</td>
+                                                <td>3</td>
+                                                <td>2</td>
+                                                <td>8</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </noscript>
+                                <div class='dynamic-range-charts row'>
+                                    <div class="panel-group statistics-chart-control float-left" id="chartAccordionOne" role="tablist">
+                                        <!--only display accordion when there are age groups data available-->
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading" role="tab" id="chartheading1">
+                                                    <h6 class="panel-title">
+                                                        <a role="button" class="reveal-link " data-toggle="collapse" data-period="01/01/2023 to 31/12/2023" data-parent="#chartAccordionOne" href="#chartAccordion1" aria-expanded="true" aria-controls="chartAccordion1">
+                                                            <span class="glyphicon glyphicon-play"></span>
+                                                                Births per embryo transferred &#x2013; excluding donor eggs and PGT-A
+                                                        </a>
+                                                    </h6>
+                                                </div>
+                                                <div id="chartAccordion1" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="chartheading1">
+                                                    <div class="panel-content">
+                                                                    <div class="chart-set" data-term-descr="">
+                <ul class="list-unstyled list-inline">
+                                <li>
+                <span class="item">
+                    <input type="radio" name="ivfembryo" checked="checked" data-caveat="" data-statsTypeLabel="embryos transferred" data-content="Births per embryo transferred &#x2013; excluding donor eggs and PGT-A" data-period="01/01/2023 to 31/12/2023" data-name="clinic" />
+                    <label data-min-range="27" data-max-range="38" data-nat-ave="34" data-mean="32" data-count="647" data-compare="Consistent with">
+                        Under 38
+                    </label>
+                </span>
+            </li>
+
+                                <li>
+                <span class="item">
+                    <input type="radio" name="ivfembryo"  data-caveat="" data-statsTypeLabel="embryos transferred" data-content="Births per embryo transferred &#x2013; excluding donor eggs and PGT-A" data-period="01/01/2023 to 31/12/2023" data-name="clinic" />
+                    <label data-min-range="12" data-max-range="24" data-nat-ave="16" data-mean="17" data-count="374" data-compare="Consistent with">
+                        38 and over
+                    </label>
+                </span>
+            </li>
+
+                                <li>
+                <span class="item">
+                    <input type="radio" name="ivfembryo"  data-caveat="" data-statsTypeLabel="embryos transferred" data-content="Births per embryo transferred &#x2013; excluding donor eggs and PGT-A" data-period="01/01/2023 to 31/12/2023" data-name="clinic" />
+                    <label data-min-range="23" data-max-range="31" data-nat-ave="28" data-mean="27" data-count="1021" data-compare="Consistent with">
+                        All
+                    </label>
+                </span>
+            </li>
+
+                </ul>
+            </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading" role="tab" id="chartheading2">
+                                                    <h6 class="panel-title">
+                                                        <a class="reveal-link collapsed" role="button" data-period="01/01/2022 to 31/12/2022" data-toggle="collapse" data-parent="#chartAccordionOne" href="#chartAccordion2" aria-expanded="true" aria-controls="chartAccordion1">
+                                                            <span class="glyphicon glyphicon-play"></span>
+                                                                Births per egg collection &#x2013; excluding donor eggs, including PGT-A
+                                                        </a>
+                                                    </h6>
+                                                </div>
+                                                <div id="chartAccordion2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="chartheading2">
+                                                    <div class="panel-content">
+                                                                    <div class="chart-set" data-term-descr="">
+                <ul class="list-unstyled list-inline">
+                                <li>
+                <span class="item">
+                    <input type="radio" name="ivfegg" checked="checked" data-caveat="" data-statsTypeLabel="eggs collected" data-content="Births per egg collection &#x2013; excluding donor eggs, including PGT-A" data-period="01/01/2022 to 31/12/2022" data-name="clinic" />
+                    <label data-min-range="33" data-max-range="51" data-nat-ave="47" data-mean="42" data-count="296" data-compare="Consistent with">
+                        Under 38
+                    </label>
+                </span>
+            </li>
+
+                                <li>
+                <span class="item">
+                    <input type="radio" name="ivfegg"  data-caveat="" data-statsTypeLabel="eggs collected" data-content="Births per egg collection &#x2013; excluding donor eggs, including PGT-A" data-period="01/01/2022 to 31/12/2022" data-name="clinic" />
+                    <label data-min-range="16" data-max-range="32" data-nat-ave="22" data-mean="23" data-count="264" data-compare="Consistent with">
+                        38 and over
+                    </label>
+                </span>
+            </li>
+
+                                <li>
+                <span class="item">
+                    <input type="radio" name="ivfegg"  data-caveat="" data-statsTypeLabel="eggs collected" data-content="Births per egg collection &#x2013; excluding donor eggs, including PGT-A" data-period="01/01/2022 to 31/12/2022" data-name="clinic" />
+                    <label data-min-range="27" data-max-range="39" data-nat-ave="37" data-mean="33" data-count="560" data-compare="Consistent with">
+                        All
+                    </label>
+                </span>
+            </li>
+
+                </ul>
+            </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading" role="tab" id="chartheading3">
+                                                    <h6 class="panel-title">
+                                                        <a class="reveal-link collapsed" role="button" data-period="01/01/2023 to 31/12/2023" data-toggle="collapse" data-parent="#chartAccordionOne" href="#chartAccordion3" aria-expanded="true" aria-controls="chartAccordion3">
+                                                            <span class="glyphicon glyphicon-play"></span>Multiple birth rate
+                                                        </a>
+                                                    </h6>
+                                                </div>
+                                                <div id="chartAccordion3" class="panel-collapse collapse" role="tabpanel" aria-labelledby="chartheading3">
+                                                    <div class="panel-content">
+                                                                    <div class="chart-set" data-term-descr="">
+                <ul class="list-unstyled list-inline">
+                                <li>
+                <span class="item">
+                    <input type="radio" name="ivfmult" checked="checked" data-caveat="" data-statsTypeLabel="births" data-content="Multiple birth rate" data-period="01/01/2023 to 31/12/2023" data-name="multiple" />
+                    <label data-min-range="0" data-max-range="7" data-nat-ave="3" data-mean="2" data-count="211" data-compare="Consistent with">
+                        Under 38
+                    </label>
+                </span>
+            </li>
+
+                                <li>
+                <span class="item">
+                    <input type="radio" name="ivfmult"  data-caveat="" data-statsTypeLabel="births" data-content="Multiple birth rate" data-period="01/01/2023 to 31/12/2023" data-name="multiple" />
+                    <label data-min-range="2" data-max-range="25" data-nat-ave="4" data-mean="8" data-count="63" data-compare="Consistent with">
+                        38 and over
+                    </label>
+                </span>
+            </li>
+
+                                <li>
+                <span class="item">
+                    <input type="radio" name="ivfmult"  data-caveat="" data-statsTypeLabel="births" data-content="Multiple birth rate" data-period="01/01/2023 to 31/12/2023" data-name="multiple" />
+                    <label data-min-range="1" data-max-range="8" data-nat-ave="3" data-mean="3" data-count="274" data-compare="Consistent with">
+                        All
+                    </label>
+                </span>
+            </li>
+
+                </ul>
+            </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    </div>
+                                    <div class="col-lg-8">
+                                                <div class="statistics-chart pb-20">
+            <div class="statistics-container">
+                <div class="grid">
+                    <table>
+                        <tr class="label-row">
+                                <td>5</td>
+                                <td>10</td>
+                                <td>15</td>
+                                <td>20</td>
+                                <td>25</td>
+                                <td>30</td>
+                                <td>35</td>
+                                <td>40</td>
+                                <td>45</td>
+                                <td>50</td>
+                                <td>55</td>
+                                <td>60</td>
+                                <td>65</td>
+                                <td>70</td>
+                                <td>75</td>
+                                <td>80</td>
+                                <td>85</td>
+                                <td>90</td>
+                                <td>95</td>
+                                <td>100</td>
+                        </tr>
+                        <tr class="first-row">
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                        </tr>
+                        <tr class="second-row">
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="rangeChart">
+                    <div class="range">
+                    </div>
+                    <div class="mean">
+                        <span>
+                        </span>
+                    </div>
+                    <div class="nat-ave">
+                        <span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <ul class="chart-key list-inline">
+                <li class="mean">
+                    <span></span>
+                    Clinic&#x27;s rate
+                </li>
+                <li class="nat_ave">
+                    <span></span>
+                    National rate
+                </li>
+                <li class="range">
+                    <span></span>
+                    Reliability range
+                </li>
+            </ul>
+            <p class="stats-caveat"></p>
+
+                    <p class="consistent consistentStatus below-average">
+                        <span class="icon"></span>
+
+                        <span class="consistent_text">Below</span> 
+national average
+    <a href="#" data-toggle="tooltip" title="Taking into account the number of embryos in the calculation, this shows whether the clinic&#x2019;s rate is below, consistent with or above the rate for all clinics across the UK. Small differences between clinics&#x2019; rates often do not reflect any real difference in performance.">
+        <span class="hidden">Description</span>
+        <span class="tooltip-icon" aria-hidden="true">i</span>
+        <span class="sr-only">Information: Taking into account the number of embryos in the calculation, this shows whether the clinic&#x2019;s rate is below, consistent with or above the rate for all clinics across the UK. Small differences between clinics&#x2019; rates often do not reflect any real difference in performance.</span>
+    </a>
+
+                    </p>
+                    <p class="blue-text">
+                        <strong>
+                            The <span class="stat-name"></span> birth rate is based on <span class="stat-counter"></span> <span class="stat-type"></span>
+                        </strong>
+                    </p>
+                    <span class="redacted-data">** The number is fewer than five so has been removed to avoid the risk of identifying patients.</span>
+            <div class="col-lg-11">
+                <!--parent.GetProperty("ivfRateText")-->
+            </div>
+            <div class="col-lg-1">
+                            <a class="hfea-btn btn btn-primary btn-lg bg_bright_green hfea-btn-inline"
+               href="/choose-a-clinic/detailed-statistics" title="View detailed statistics for Barts Health Centre for Reproductive Medicine" style="background-color:#f1ede7; color:#008385; font-size: 18px; font-weight: 700; left:75px;"><span class="glyphicon glyphicon-play" style="position: relative; justify-content: center; text-align: center; top: 0; right: 0.5em; color: #c8da2a;"></span>View detailed statistics</a>
+            <!--<a style="background-color:#f1ede7; color:#008385;" class="hfea-btn btn btn-primary btn-lg bg_bright_green hfea-btn-inline" href="Model.StatsPageUrl">parent.GetProperty("statisticPageLabel")</a>-->
+
+            </div>
+
+        </div>
+
+                                    </div>
+                                </div>
+                                <!-- END OF RANGE CHARTS -->
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <p>For more, see the <a class="hfea-v2 teal-white" href="/choose-a-clinic/detailed-statistics">detailed statistics</a> where you can look at other data.</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <h4 id="more-about-the-statistics" style="scroll-margin-top: 100px;">More about the statistics</h4>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12"><h5 style="font-weight: 500; font-size: 1.15em; margin-bottom: 1em; margin-top: 1em; font-family: 'Segoe UI', Helvetica, Arial, Roboto, 'Lucida Grande', 'San Francisco', sans-serif;">Births per embryo transferred</h5>
+<p>We show births per embryo transferred as it promotes embryo transfer practices that minimise the chances of multiple births, which carry health risks for the babies and the patient.</p>
+<p>Births per embryo transferred accounts for cases where multiple embryos are transferred in the same procedure but <span style="font-weight: bold;">does not include the outcomes of patients who do not reach embryo transfer stage</span>.</p>
+<p>Please note: This includes outcomes from embryos transferred for fresh and frozen embryo cycles. PGT-A cycles and donor egg cycles are excluded, to find data for these go to the <a href="/choose-a-clinic/detailed-statistics/" class="hfea-v2 teal-white" title="Detailed statistics">detailed statistics</a> section.</p>
+<h5 style="font-weight: 500; font-size: 1.15em; margin-bottom: 1em; margin-top: 1em; font-family: 'Segoe UI', Helvetica, Arial, Roboto, 'Lucida Grande', 'San Francisco', sans-serif;">Births per egg collection procedure</h5>
+<p>We show births per egg collection procedure as it’s close to the start of the patient journey and a stage that the majority of fresh embryo cycles that patients undergo will reach.</p>
+<p>Because of the way births per egg collection procedure is calculated, <span style="font-weight: bold;">it includes both fresh and frozen embryo transfers from the same egg collection</span>.</p>
+<p>Please note: This includes all egg collection procedures for fresh and frozen embryo, and PGT-A cycles. Donor egg cycles are excluded, to find data for these go to the <a href="/choose-a-clinic/detailed-statistics/" class="hfea-v2 teal-white" title="Detailed statistics">detailed statistics</a> section.</p>
+<h4>National average</h4>
+<p>It may be tempting to rely solely on success rates, but the most important thing to focus on is whether the clinic’s results are consistent with the national average. Try not to read into differences of a few percentage points above or below the national average, as these are often down to chance rather than being a reflection of a clinic’s abilities.</p>
+<h4>Reliability range</h4>
+<p>The reliability range shows how confident we are that a clinic will repeat its success rate in the future – the narrower the range, the more confident we can be. Large clinics normally have a narrower reliability range. That’s not because their data is more accurate but because their rate is less likely to be affected by small changes in the number of births in one year. Small clinics aren’t worse, but their success rate is more likely to be affected by these kinds of changes.</p>
+<h4>Why are donor egg or PGT-A cycles not included in all these statistics?</h4>
+<h5 style="font-weight: 500; font-size: 1.15em; margin-bottom: 1em; margin-top: 1em; font-family: 'Segoe UI', Helvetica, Arial, Roboto, 'Lucida Grande', 'San Francisco', sans-serif;">Donor egg cycles:</h5>
+<p>It could unfairly advantage clinics that carry out above average numbers of donor egg cycles because the chance of having a baby with IVF using donor eggs is generally higher compared with IVF using a patient’s own eggs, particularly if they are older than 38, have poor quality eggs, or produce a low number of eggs. This is because the health and age of the egg influences the chance of having a baby. More information about treatment with donor eggs can be found <a href="/treatments/explore-all-treatments/using-donated-eggs-sperm-or-embryos-in-treatment/" title="Using donated eggs, sperm or embryos in treatment" target="_blank" rel="noopener" class="hfea-v2 teal-white">here</a>.</p>
+<h5 style="font-weight: 500; font-size: 1.15em; margin-bottom: 1em; margin-top: 1em; font-family: 'Segoe UI', Helvetica, Arial, Roboto, 'Lucida Grande', 'San Francisco', sans-serif;">PGT-A cycles:</h5>
+<p>PGT-A is classed as a treatment <a href="#" title="Pre-implantation genetic testing for aneuploidy (PGT-A)" target="_blank" rel="noopener" class="hfea-v2 teal-white">add-on</a> by the HFEA. Evidence shows that for most patients starting treatment, it does not improve the chances of having a baby due to the fact it can often reduce the number of embryos available for transfer. For more information about PGT-A see our <a class="hfea-v2 teal-white" href="#" title="Pre-implantation genetic testing for aneuploidy (PGT-A)" target="_blank" rel="noopener">add-ons page</a>.</p>
+<p>With PGT-A, embryos are chosen by looking for abnormalities in their chromosomes (as embryos that appear to have missing, or extra, chromosomes have less chance of developing into a baby). Patients having embryos transferred with a normal chromosome number may have a higher chance of having a baby from that particular embryo. So, including PGT-A in the birth rate per embryo transferred could mean that clinics that carry out above average numbers of PGT-A cycles could have a higher overall rate, because only a certain number of embryos will have been selected, which is why it has been excluded from the births per embryo transferred statistic.</p>
+<p>PGT-A occasionally leads to the exclusion of an embryo that may have developed normally. This means, while the chance of a baby per embryo transferred may be higher, if we look at the chance of having a baby for each cycle of treatment started, it may be lower. PGT-A is, therefore, included in the births per egg collection statistic as it gives a true indication of the chance of a live birth per egg collection as some patients having PGT-A may not have an embryo to transfer or have reduced numbers of embryos to transfer.</p>
+<h4>Detailed Statistics</h4>
+<p>Our <a href="/choose-a-clinic/detailed-statistics/" class="hfea-v2 teal-white" title="Detailed statistics">detailed statistics</a> page allows you to tailor your search to better reflect your personal circumstances. Remember, the more precisely you specify your treatment options, the smaller the numbers of past patients and the potentially less reliable the results.</p>
+<p>Our detailed statistics allow you to search for more age groups, and to look at pregnancy and birth rates in more detail.</p>
+<!--<p>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const base = window.location.href.replace(/\/$/, '').replace(/#.*$/, ''); // Remove trailing slash if present
+
+    // Select all elements with the class 'detailedStatisticsLink'
+    let links = document.querySelectorAll('.detailedStatisticsLink');
+
+    // Loop through all the selected links and update their href
+    links.forEach(link => {
+        link.href = base + '/statistics';
+    });
+});
+</script>
+</p>--></div>
+                                </div>
+                                <!--fRenderStatsPageUrl()-->
+                            </div> <!-- END OF SUB ACCORDION -->
+                        </div>
+                    </div>
+                <!-- / IVF-->
+                    <!-- IUI -->
+                    <div class="panel-hfea panel-default">
+                        <div class="panel-heading" role="tab" id="subheadingTwo">
+                            <h5 class="panel-title">
+                                <a role="button" class="accordion-toggle" data-parent="#childaccordionIVF" href="#subcollapseTwo" aria-expanded="false" aria-controls="subcollapseTwo">
+                                    <span class="title-text">
+                                        What is the clinic&#x27;s IUI pregnancy rate?
+                                    </span>
+                                    <span class="sr-only">Click or press enter to show or hide content</span>
+                                    <span class="chevron"></span>
+                                </a>
+                            </h5>
+                        </div>
+                        <div id="subcollapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="subheadingTwo">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-lg-12"><p>In this section you can see the pregnancy rate per IUI treatment using partner sperm.</p></div>
+                                </div>
+                                <h3>Pregnancies per treatment with partner</h3>
+                                <p> <span class="period">01/01/2024 to 31/12/2024</span></p>
+
+                                <!-- RANGE CHARTS -->
+                                <noscript>
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Category</th>
+                                                <th>All</th>
+                                                <th>Under 38</th>
+                                                <th>38 and over</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Pregnancies per treatment with partner</td>
+                                                <td>-900</td>
+                                                <td>-900</td>
+                                                <td>-900</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </noscript>
+
+                                <div class='dynamic-range-charts row'>
+                                    <div class="panel-group statistics-chart-control" id="chartAccordionTwo" role="tablist">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading" role="tab" id="chartheading4">
+                                                <h6 class="panel-title">
+                                                    <a role="button" class="reveal-link " data-toggle="collapse" data-parent="#chartAccordionTwo" href="#chartAccordion4" aria-expanded="true" aria-controls="chartAccordion4">
+                                                        <span class="glyphicon glyphicon-play"></span>Pregnancies per treatment with partner
+                                                    </a>
+                                                </h6>
+                                            </div>
+                                            <div id="chartAccordion4" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="chartheading4">
+                                                <div class="panel-content">
+                                                                <div class="chart-set" data-term-descr="">
+                <ul class="list-unstyled list-inline">
+                                <li>
+                <span class="item">
+                    <input type="radio" name="iuibirths" checked="checked" data-caveat="" data-statsTypeLabel="cycles" data-content="Pregnancies per treatment with partner" data-period="01/01/2024 to 31/12/2024" data-name="clinic" />
+                    <label data-min-range="0" data-max-range="0" data-nat-ave="13" data-mean="-900" data-count="-9" data-compare="Consistent with">
+                        Under 38
+                    </label>
+                </span>
+            </li>
+
+                                <li>
+                <span class="item">
+                    <input type="radio" name="iuibirths"  data-caveat="" data-statsTypeLabel="cycles" data-content="Pregnancies per treatment with partner" data-period="01/01/2024 to 31/12/2024" data-name="clinic" />
+                    <label data-min-range="0" data-max-range="0" data-nat-ave="6" data-mean="-900" data-count="-9" data-compare="Consistent with">
+                        38 and over
+                    </label>
+                </span>
+            </li>
+
+                                <li>
+                <span class="item">
+                    <input type="radio" name="iuibirths"  data-caveat="" data-statsTypeLabel="cycles" data-content="Pregnancies per treatment with partner" data-period="01/01/2024 to 31/12/2024" data-name="clinic" />
+                    <label data-min-range="0" data-max-range="0" data-nat-ave="11" data-mean="-900" data-count="-9" data-compare="Consistent with">
+                        All
+                    </label>
+                </span>
+            </li>
+
+                </ul>
+            </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-8">
+                                                <div class="statistics-chart pb-20">
+            <div class="statistics-container">
+                <div class="grid">
+                    <table>
+                        <tr class="label-row">
+                                <td>5</td>
+                                <td>10</td>
+                                <td>15</td>
+                                <td>20</td>
+                                <td>25</td>
+                                <td>30</td>
+                                <td>35</td>
+                                <td>40</td>
+                                <td>45</td>
+                                <td>50</td>
+                                <td>55</td>
+                                <td>60</td>
+                                <td>65</td>
+                                <td>70</td>
+                                <td>75</td>
+                                <td>80</td>
+                                <td>85</td>
+                                <td>90</td>
+                                <td>95</td>
+                                <td>100</td>
+                        </tr>
+                        <tr class="first-row">
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                        </tr>
+                        <tr class="second-row">
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="rangeChart">
+                    <div class="range">
+                    </div>
+                    <div class="mean">
+                        <span>
+                        </span>
+                    </div>
+                    <div class="nat-ave">
+                        <span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <ul class="chart-key list-inline">
+                <li class="mean">
+                    <span></span>
+                    Clinic&#x27;s rate
+                </li>
+                <li class="nat_ave">
+                    <span></span>
+                    National rate
+                </li>
+                <li class="range">
+                    <span></span>
+                    Reliability range
+                </li>
+            </ul>
+            <p class="stats-caveat"></p>
+
+                    <p class="consistent consistentStatus below-average">
+                        <span class="icon"></span>
+
+                        <span class="consistent_text">Below</span> 
+national average
+    <a href="#" data-toggle="tooltip" title="Taking into account the number of embryos in the calculation, this shows whether the clinic&#x2019;s rate is below, consistent with or above the rate for all clinics across the UK. Small differences between clinics&#x2019; rates often do not reflect any real difference in performance.">
+        <span class="hidden">Description</span>
+        <span class="tooltip-icon" aria-hidden="true">i</span>
+        <span class="sr-only">Information: Taking into account the number of embryos in the calculation, this shows whether the clinic&#x2019;s rate is below, consistent with or above the rate for all clinics across the UK. Small differences between clinics&#x2019; rates often do not reflect any real difference in performance.</span>
+    </a>
+
+                    </p>
+                    <p class="blue-text">
+                        <strong>
+                            The <span class="stat-name"></span> birth rate is based on <span class="stat-counter"></span> <span class="stat-type"></span>
+                        </strong>
+                    </p>
+                    <span class="redacted-data">** The number is fewer than five so has been removed to avoid the risk of identifying patients.</span>
+            <div class="col-lg-11">
+                <!--parent.GetProperty("ivfRateText")-->
+            </div>
+            <div class="col-lg-1">
+                            <a class="hfea-btn btn btn-primary btn-lg bg_bright_green hfea-btn-inline"
+               href="/choose-a-clinic/detailed-statistics" title="View detailed statistics for Barts Health Centre for Reproductive Medicine" style="background-color:#f1ede7; color:#008385; font-size: 18px; font-weight: 700; left:75px;"><span class="glyphicon glyphicon-play" style="position: relative; justify-content: center; text-align: center; top: 0; right: 0.5em; color: #c8da2a;"></span>View detailed statistics</a>
+            <!--<a style="background-color:#f1ede7; color:#008385;" class="hfea-btn btn btn-primary btn-lg bg_bright_green hfea-btn-inline" href="Model.StatsPageUrl">parent.GetProperty("statisticPageLabel")</a>-->
+
+            </div>
+
+        </div>
+
+                                    </div>
+                                </div><!-- END OF RANGE CHARTS -->
+                                <div class="row">
+                                    <div class="col-lg-12"><h4>Detailed Statistics</h4>
+<p>Our <a href="/choose-a-clinic/detailed-statistics/" class="hfea-v2 teal-white" title="Detailed statistics">detailed statistics</a> page allows you to tailor your search to better reflect your personal circumstances. Remember, the more precisely you specify your treatment options, the smaller the numbers of past patients and the potentially less reliable the results.</p>
+<p>Our detailed statistics allow you to search for more age groups, and to look at pregnancy and birth rates by birth per treatment cycle and births per embryo transferred.</p></div>
+                                </div>
+                            </div>
+                            <!--RenderStatsPageUrl()-->
+                        </div>
+                    </div>
+                <!--/ IUI-->
+                <!-- DI -->
+                    <div class="panel-hfea panel-default">
+                        <div class="panel-heading" role="tab" id="subheadingThree">
+                            <h5 class="panel-title">
+                                <a role="button" class="accordion-toggle" data-parent="#childaccordionIVF" href="#subcollapseThree" aria-expanded="false" aria-controls="subcollapseThree">
+                                    <span class="title-text">
+                                        What is the clinic&#x27;s Donor Insemination birth rate?
+                                    </span>
+                                    <span class="sr-only">Click or press enter to show or hide content</span>
+                                    <span class="chevron"></span>
+                                </a>
+                            </h5>
+                        </div>
+                        <div id="subcollapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="subheadingThree">
+                            <div class="panel-body">
+                                <p>In this section you can see the birth rate per donor insemination treatment.</p>
+                                <h3>Births per treatment</h3>
+                                <p> <span class="period">01/01/2023 to 31/12/2023</span></p>
+
+                                <!-- RANGE CHARTS -->
+                                <noscript>
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Category</th>
+                                                <th>All</th>
+                                                <th>Under 38</th>
+                                                <th>38 and over</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Births per treatment</td>
+                                                <td>14</td>
+                                                <td>14</td>
+                                                <td>-900</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </noscript>
+
+                                <div class='dynamic-range-charts row'>
+                                    <div class="panel-group statistics-chart-control" id="chartAccordionThree" role="tablist">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading" role="tab" id="chartheading5">
+                                                <h6 class="panel-title">
+                                                    <a role="button" class="reveal-link " data-toggle="collapse" data-parent="#chartAccordionThree" href="#chartAccordion5" aria-expanded="true" aria-controls="chartAccordion5">
+                                                        <span class="glyphicon glyphicon-play"></span>Births per treatment
+                                                    </a>
+                                                </h6>
+                                            </div>
+                                            <div id="chartAccordion5" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="chartheading5">
+                                                <div class="panel-content">
+                                                                <div class="chart-set" data-term-descr="">
+                <ul class="list-unstyled list-inline">
+                                <li>
+                <span class="item">
+                    <input type="radio" name="dibirths" checked="checked" data-caveat="" data-statsTypeLabel="cycles" data-content="Births per treatment" data-period="01/01/2023 to 31/12/2023" data-name="clinic" />
+                    <label data-min-range="1" data-max-range="69" data-nat-ave="15" data-mean="14" data-count="7" data-compare="Consistent with">
+                        Under 38
+                    </label>
+                </span>
+            </li>
+
+                                <li>
+                <span class="item">
+                    <input type="radio" name="dibirths"  data-caveat="" data-statsTypeLabel="cycles" data-content="Births per treatment" data-period="01/01/2023 to 31/12/2023" data-name="clinic" />
+                    <label data-min-range="0" data-max-range="0" data-nat-ave="6" data-mean="-900" data-count="-9" data-compare="Consistent with">
+                        38 and over
+                    </label>
+                </span>
+            </li>
+
+                                <li>
+                <span class="item">
+                    <input type="radio" name="dibirths"  data-caveat="" data-statsTypeLabel="cycles" data-content="Births per treatment" data-period="01/01/2023 to 31/12/2023" data-name="clinic" />
+                    <label data-min-range="1" data-max-range="69" data-nat-ave="13" data-mean="14" data-count="7" data-compare="Consistent with">
+                        All
+                    </label>
+                </span>
+            </li>
+
+                </ul>
+            </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-8">
+                                                <div class="statistics-chart pb-20">
+            <div class="statistics-container">
+                <div class="grid">
+                    <table>
+                        <tr class="label-row">
+                                <td>5</td>
+                                <td>10</td>
+                                <td>15</td>
+                                <td>20</td>
+                                <td>25</td>
+                                <td>30</td>
+                                <td>35</td>
+                                <td>40</td>
+                                <td>45</td>
+                                <td>50</td>
+                                <td>55</td>
+                                <td>60</td>
+                                <td>65</td>
+                                <td>70</td>
+                                <td>75</td>
+                                <td>80</td>
+                                <td>85</td>
+                                <td>90</td>
+                                <td>95</td>
+                                <td>100</td>
+                        </tr>
+                        <tr class="first-row">
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                        </tr>
+                        <tr class="second-row">
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="rangeChart">
+                    <div class="range">
+                    </div>
+                    <div class="mean">
+                        <span>
+                        </span>
+                    </div>
+                    <div class="nat-ave">
+                        <span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <ul class="chart-key list-inline">
+                <li class="mean">
+                    <span></span>
+                    Clinic&#x27;s rate
+                </li>
+                <li class="nat_ave">
+                    <span></span>
+                    National rate
+                </li>
+                <li class="range">
+                    <span></span>
+                    Reliability range
+                </li>
+            </ul>
+            <p class="stats-caveat"></p>
+
+                    <p class="consistent consistentStatus above-average">
+                        <span class="icon"></span>
+
+                        <span class="consistent_text">Above</span> 
+national average
+    <a href="#" data-toggle="tooltip" title="Taking into account the number of embryos in the calculation, this shows whether the clinic&#x2019;s rate is below, consistent with or above the rate for all clinics across the UK. Small differences between clinics&#x2019; rates often do not reflect any real difference in performance.">
+        <span class="hidden">Description</span>
+        <span class="tooltip-icon" aria-hidden="true">i</span>
+        <span class="sr-only">Information: Taking into account the number of embryos in the calculation, this shows whether the clinic&#x2019;s rate is below, consistent with or above the rate for all clinics across the UK. Small differences between clinics&#x2019; rates often do not reflect any real difference in performance.</span>
+    </a>
+
+                    </p>
+                    <p class="blue-text">
+                        <strong>
+                            The <span class="stat-name"></span> birth rate is based on <span class="stat-counter"></span> <span class="stat-type"></span>
+                        </strong>
+                    </p>
+                    <span class="redacted-data">** The number is fewer than five so has been removed to avoid the risk of identifying patients.</span>
+            <div class="col-lg-11">
+                <!--parent.GetProperty("ivfRateText")-->
+            </div>
+            <div class="col-lg-1">
+                            <a class="hfea-btn btn btn-primary btn-lg bg_bright_green hfea-btn-inline"
+               href="/choose-a-clinic/detailed-statistics" title="View detailed statistics for Barts Health Centre for Reproductive Medicine" style="background-color:#f1ede7; color:#008385; font-size: 18px; font-weight: 700; left:75px;"><span class="glyphicon glyphicon-play" style="position: relative; justify-content: center; text-align: center; top: 0; right: 0.5em; color: #c8da2a;"></span>View detailed statistics</a>
+            <!--<a style="background-color:#f1ede7; color:#008385;" class="hfea-btn btn btn-primary btn-lg bg_bright_green hfea-btn-inline" href="Model.StatsPageUrl">parent.GetProperty("statisticPageLabel")</a>-->
+
+            </div>
+
+        </div>
+
+                                    </div>
+                                </div><!--END RANGE CHARTS-->
+                                <div class="row">
+                                    <div class="col-lg-12"><h4>Detailed Statistics</h4>
+<p>Our <a href="/choose-a-clinic/detailed-statistics/" class="hfea-v2 teal-white" title="Detailed statistics">detailed statistics</a> page allows you to tailor your search to better reflect your personal circumstances. Remember, the more precisely you specify your treatment options, the smaller the numbers of past patients and the potentially less reliable the results.</p>
+<p>Our detailed statistics allow you to search for more age groups, and to look at pregnancy and birth rates by birth per treatment cycle and births per embryo transferred.</p></div>
+                                </div>
+                            </div>
+                            <!--RenderStatsPageUrl()-->
+                        </div>
+                    </div>
+                <!-- /DI-->
+            </div>
+            <!-- / stats accordions-->
+        </div>
+    </div>
+
+        <!-- WAITING TIMES PANEL-->
+
+
+
+<div class="panel-hfea panel-default">
+    <div class="panel-heading" role="tab" id="heading-waiting">
+        <h4 class="panel-title parent-panel-title">
+            <a class="accordion-toggle collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-waiting" aria-expanded="false" aria-controls="collapse-waiting">
+                Donor waiting times
+                <span class="chevron"></span>
+            </a>
+        </h4>
+    </div>
+    <div id="collapse-waiting" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-waiting">
+        <noscript>
+            <table class="waiting-times-table">
+                <caption class="sr-only">View the clinic waiting times.</caption>
+                <thead>
+                    <tr>
+                        <th class="medium-heading"></th>
+                        <th class="medium-heading" colspan="3">You can view this clinic&#x27;s waiting times for treatment with donated eggs, sperm or embryos below. Use the table below to give you an idea of the availability at the clinic. Please contact the clinic for the most up to date information.</th>
+                    </tr>
+                    <tr>
+                        <th class="medium-heading">Ethnicity</th>
+                        <th class="medium-heading">Egg donors</th>
+                        <th class="medium-heading">Embryo donors</th>
+                        <th class="medium-heading">Sperm donors</th>
+                    </tr>
+                </thead>
+                <tbody>
+                                <tr>
+                <td>White</td>
+                <td>No data available</td>
+                <td>No data available</td>
+                <td>Immediately available</td>
+            </tr>
+            <tr>
+                <td>Black</td>
+                <td>No data available</td>
+                <td>No data available</td>
+                <td>Immediately available</td>
+            </tr>
+            <tr>
+                <td>Asian</td>
+                <td>No data available</td>
+                <td>No data available</td>
+                <td>Immediately available</td>
+            </tr>
+            <tr>
+                <td>Mixed</td>
+                <td>No data available</td>
+                <td>No data available</td>
+                <td>No data available</td>
+            </tr>
+            <tr>
+                <td>Other ethnic groups</td>
+                <td>No data available</td>
+                <td>No data available</td>
+                <td>Immediately available</td>
+            </tr>
+
+                </tbody>
+            </table>
+        </noscript>
+
+        <div class="panel-body">
+            <div class="panel-intro row bg_light_blue">
+                <h5 class="medium-heading">You can view this clinic&#x27;s waiting times for treatment with donated eggs, sperm or embryos below. Use the table below to give you an idea of the availability at the clinic. Please contact the clinic for the most up to date information.</h5>
+                <div class="waiting-times-control hide-if-no-js">
+                    <label class="sr-only" for="waiting-times-select">Select donor type</label>
+                    <select id="waiting-times-select">
+                        <option value="egg-donors" selected>Egg donors</option>
+                        <option value="sperm-donors">Sperm donors</option>
+                        <option value="embryo-donors">Embryo donors</option>
+                    </select>
+                </div>
+            </div>
+            <div class="panel-main-body waiting-times">
+                <div class="egg-donors stats">
+                                <table class="waiting-times-table">
+                <caption class="sr-only">View the clinic waiting times.</caption>
+                <thead>
+                    <tr>
+                        <th class="medium-heading">Ethnicity</th>
+                        <th class="medium-heading">Waiting times</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>White</td>
+                        <td>No data available</td>
+                    </tr>
+                    <tr>
+                        <td>Black</td>
+                        <td>No data available</td>
+                    </tr>
+                    <tr>
+                        <td>Asian</td>
+                        <td>No data available</td>
+                    </tr>
+                    <tr>
+                        <td>Mixed</td>
+                        <td>No data available</td>
+                    </tr>
+                    <tr>
+                        <td>Other ethnic groups</td>
+                        <td>No data available</td>
+                    </tr>
+                </tbody>
+            </table>
+
+                </div>
+                <div class="sperm-donors stats">
+                                <table class="waiting-times-table">
+                <caption class="sr-only">View the clinic waiting times.</caption>
+                <thead>
+                    <tr>
+                        <th class="medium-heading">Ethnicity</th>
+                        <th class="medium-heading">Waiting times</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>White</td>
+                        <td>Immediately available</td>
+                    </tr>
+                    <tr>
+                        <td>Black</td>
+                        <td>Immediately available</td>
+                    </tr>
+                    <tr>
+                        <td>Asian</td>
+                        <td>Immediately available</td>
+                    </tr>
+                    <tr>
+                        <td>Mixed</td>
+                        <td>No data available</td>
+                    </tr>
+                    <tr>
+                        <td>Other ethnic groups</td>
+                        <td>Immediately available</td>
+                    </tr>
+                </tbody>
+            </table>
+
+                </div>
+                <div class="embryo-donors stats">
+                                <table class="waiting-times-table">
+                <caption class="sr-only">View the clinic waiting times.</caption>
+                <thead>
+                    <tr>
+                        <th class="medium-heading">Ethnicity</th>
+                        <th class="medium-heading">Waiting times</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>White</td>
+                        <td>No data available</td>
+                    </tr>
+                    <tr>
+                        <td>Black</td>
+                        <td>No data available</td>
+                    </tr>
+                    <tr>
+                        <td>Asian</td>
+                        <td>No data available</td>
+                    </tr>
+                    <tr>
+                        <td>Mixed</td>
+                        <td>No data available</td>
+                    </tr>
+                    <tr>
+                        <td>Other ethnic groups</td>
+                        <td>No data available</td>
+                    </tr>
+                </tbody>
+            </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+        <!-- DETAILS PANEL -->
+
+
+
+
+<div class="panel-hfea panel-default">
+    <div class="panel-heading" role="tab" id="heading4">
+        <h4 class="panel-title parent-panel-title">
+            <a class="collapsed clinic-details-toggle accordion-toggle" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse4" aria-expanded="false" aria-controls="collapse4">
+                Clinic details
+                <span class="chevron"></span>
+            </a>
+        </h4>
+    </div>
+    <div id="collapse4" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading4">
+        <div class="clinic-details">
+            <!-- new details design-->
+            <div class="row">
+            <div class="detail col-lg-4 col-md-6">
+                <h2>Eligibility</h2>
+                <ul class="list-unstyled">
+                        <li>
+                            BMI limit
+                        </li>
+                        <li>
+                            
+Patients from abroad
+    <a href="#" data-toggle="tooltip" title="Treats patients from outside the UK.">
+        <span class="hidden">Description</span>
+        <span class="tooltip-icon" aria-hidden="true">i</span>
+        <span class="sr-only">Information: Treats patients from outside the UK.</span>
+    </a>
+
+                        </li>
+                        <li>
+                            
+Treats NHS patients
+    <a href="#" data-toggle="tooltip" title="Treats patients who are NHS-funded.">
+        <span class="hidden">Description</span>
+        <span class="tooltip-icon" aria-hidden="true">i</span>
+        <span class="sr-only">Information: Treats patients who are NHS-funded.</span>
+    </a>
+
+                        </li>
+                        <li>
+                            
+Treats private patients
+    <a href="#" data-toggle="tooltip" title="Treats patients who are self-funded.">
+        <span class="hidden">Description</span>
+        <span class="tooltip-icon" aria-hidden="true">i</span>
+        <span class="sr-only">Information: Treats patients who are self-funded.</span>
+    </a>
+
+                        </li>
+                        <li>
+                            Upper age limit of patients treated
+                        </li>
+                        <li>
+                            Upper male age limit
+                        </li>
+                </ul>
+            </div>
+            <div class="detail col-lg-4 col-md-6">
+                <h2>Treatments </h2>
+                <ul class="list-unstyled">
+                        <li>
+                            
+Fertility preservation
+    <a href="#" data-toggle="tooltip" title="Freezing of sperm or eggs to use in treatment at a later stage. See our Treatments section for more information.">
+        <span class="hidden">Description</span>
+        <span class="tooltip-icon" aria-hidden="true">i</span>
+        <span class="sr-only">Information: Freezing of sperm or eggs to use in treatment at a later stage. See our Treatments section for more information.</span>
+    </a>
+
+                        </li>
+                        <li>
+                            
+IVF for patients with communicable viral infections
+    <a href="#" data-toggle="tooltip" title="Services for patients with HIV, hepatisis and other infectious diseases.">
+        <span class="hidden">Description</span>
+        <span class="tooltip-icon" aria-hidden="true">i</span>
+        <span class="sr-only">Information: Services for patients with HIV, hepatisis and other infectious diseases.</span>
+    </a>
+
+                        </li>
+                </ul>
+            </div>
+            <div class="detail col-lg-4 col-md-6">
+                <h2>Donor services </h2>
+                <ul class="list-unstyled">
+                        <li>
+                            Known donor programme
+                        </li>
+                        <li>
+                            
+Recruits egg donors
+    <a href="#" data-toggle="tooltip" title="This clinic recruits UK egg donors, rather than importing eggs from overseas.">
+        <span class="hidden">Description</span>
+        <span class="tooltip-icon" aria-hidden="true">i</span>
+        <span class="sr-only">Information: This clinic recruits UK egg donors, rather than importing eggs from overseas.</span>
+    </a>
+
+                        </li>
+                        <li>
+                            
+Recruits sperm donors
+    <a href="#" data-toggle="tooltip" title="This clinic recruits UK sperm donors, rather than importing sperm from overseas.">
+        <span class="hidden">Description</span>
+        <span class="tooltip-icon" aria-hidden="true">i</span>
+        <span class="sr-only">Information: This clinic recruits UK sperm donors, rather than importing sperm from overseas.</span>
+    </a>
+
+                        </li>
+                </ul>
+            </div>
+            <div class="detail col-lg-4 col-md-6">
+                <h2>Counselling and support</h2>
+                <ul class="list-unstyled">
+                        <li>
+                            Compulsory counselling for donors
+                        </li>
+                        <li>
+                            
+Counselling services at clinic
+    <a href="#" data-toggle="tooltip" title="The clinic has a counsellor onsite.">
+        <span class="hidden">Description</span>
+        <span class="tooltip-icon" aria-hidden="true">i</span>
+        <span class="sr-only">Information: The clinic has a counsellor onsite.</span>
+    </a>
+
+                        </li>
+                        <li>
+                            Dedicated counsellor
+                        </li>
+                        <li>
+                            
+Number of counselling sessions included
+    <a href="#" data-toggle="tooltip" title="One or more counselling sessions is included in the price of treatment.">
+        <span class="hidden">Description</span>
+        <span class="tooltip-icon" aria-hidden="true">i</span>
+        <span class="sr-only">Information: One or more counselling sessions is included in the price of treatment.</span>
+    </a>
+
+                        </li>
+                </ul>
+            </div>
+            <div class="detail col-lg-4 col-md-6">
+                <h2>Staffing</h2>
+                <ul class="list-unstyled">
+                        <li>
+                            Female doctor available
+                        </li>
+                </ul>
+            </div>
+            <div class="detail col-lg-4 col-md-6">
+                <h2>Facilities</h2>
+                <ul class="list-unstyled">
+                        <li>
+                            Wheelchair access
+                        </li>
+                        <li>
+                            Parking
+                        </li>
+                </ul>
+            </div>
+            </div>
+            <div class="row mb-50">
+                    <div class="col-lg-6 col-md-6 map">
+                        <div class="embed-responsive embed-responsive-4by3" style="border: 1px solid #CCC;background-color: #EFEFEF;">
+                            <h4 aria-hidden="true" style="margin-left: 7px">GoogleMaps disabled in settings</h4>
+                            <div id="clinic-map" class="embed-responsive-item" data-lat="51.5169677734375" data-lng="-0.100883699953556"></div>
+                        </div>
+                    </div>
+                <div class="col-lg-6  col-md-6 image">
+                    <img alt="Image for Barts Health Centre for Reproductive Medicine." src="https://ifqlive.blob.core.windows.net/images/94Profile?rmode=pad&amp;width=425&amp;height=333">
+                </div>
+            </div>
+            <div class="row">
+                            <div class="detail col-lg-4 col-md-6">
+                <h2>Address</h2>
+                <ul class="list-unstyled">
+                        <li>Barts and the London NHS Trust, 2nd Floor, Kenton and Lucas Wing</li>
+                        <li>St Bartholomew&#x27;s Hospital</li>
+                        <li>Little Britain</li>
+                        <li>London</li>
+                        <li>EC1A 7BE</li>
+                </ul>
+            </div>
+
+                <div class="col-lg-4 col-md-6 detail">
+                    <h2>Contact</h2>
+                        <p>P: 0207 767 3302</p>
+                        <p>F: 0203 465 5099</p>
+                        <p>E: <a href="mailto:Fertility.Admin@bartshealth.nhs.uk" class="hfea-v2 teal-white">Fertility.Admin@bartshealth.nhs.uk</a></p>
+                        <p>W: <a href="http://www.bartsandthelondon.nhs.uk/fertility/" target="_blank" title="Visit &lsquo;Barts Health Centre for Reproductive Medicine&rsquo; website" class="hfea-v2 teal-white">www.bartsandthelondon.nhs.uk/fertility/</a></p>
+                        <p><strong>Licence holder</strong></p>
+                        <p><strong>Person responsible</strong></p>
+                </div>
+                <div class="col-lg-4 col-md-6 detail">
+                    <h2>Opening hours</h2>
+                    
+        <p>Monday to Friday: 07:30 - 17:00</p>
+        <p>Saturday: 09:00 - 13:00</p>
+        <p>Sunday: 09:00 - 13:00</p>
+
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+    </div>
+</div>
+        </div>
+        
+
+<footer class="p-20 teal-bg footer">
+
+    <div class="container">
+        <div class="row social-links">
+            <div class="col-md-4">
+                <a href=https://twitter.com/hfea target="_blank">
+                    <span class="hfea-icon-twitter"></span>X (Twitter)<span class="sr-only">Opens in a new window</span>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a href="/contact-us/">
+                    <span class="hfea-icon-mail"></span>Get in touch
+                </a>
+            </div>
+                <div class="col-md-4">
+                    <a href=https://www.facebook.com/HFEAofficial target="_blank">
+                        <span class="hfea-icon-facebook2"></span>Facebook<span class="sr-only">Opens in a new window</span>
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a href=https://www.instagram.com/hfeaofficial target="_blank">
+                        <span class="hfea-icon-instagram"></span>Instagram<span class="sr-only">Opens in a new window</span>
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a href=https://www.linkedin.com/company/hfea target="_blank">
+                        <span class="hfea-icon-linkedin"></span>LinkedIn<span class="sr-only">Opens in a new window</span>
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a href=https://www.youtube.com/@hfea?sub_confirmation=1 target="_blank">
+                        <span class="hfea-icon-youtube"></span>YouTube<span class="sr-only">Opens in a new window</span>
+                    </a>
+                </div>
+        </div>
+            <div class="row footer-links">
+                
+    <div class="umb-grid">
+                <div class="grid-section">
+        <div >
+                <div class="container">
+            <div class="row clearfix">
+                    <div class="col-lg-12 column col">
+                        <div >
+
+
+
+
+<div class="col-md-3 footer-link-section">
+                <h2>Get information</h2>
+    
+    <div class="footer-links-listing"><p><a href="/choose-a-clinic/clinic-search/">Find a Clinic</a></p>
+<p><a href="/treatments/explore-all-treatments/">Treatment options</a></p>
+<p><a href="/donation/">Donors and donation</a></p>
+<p><a href="/treatments/fertility-preservation/">Fertility preservation</a></p>
+<p><a href="/about-us/a-z-fertility-glossary/" title="A-Z fertility glossary">A-Z fertility glossary</a></p>
+<p><a href="/contact-us/frequently-asked-questions/" title="Visit the 'Frequently asked questions' page">Frequently asked questions (FAQs)</a></p></div>
+</div>
+
+
+
+
+<div class="col-md-3 footer-link-section">
+                <h2>About the HFEA</h2>
+    
+    <div class="footer-links-listing"><p><a href="/about-us/media-centre/" title="Media centre">Media centre</a></p>
+<p><a href="/about-us/news-and-press-releases/">News and press releases</a></p>
+<p><a href="/privacy-policy-cookies-and-accessibility/">Privacy, cookies and accessibility</a></p>
+<p><a href="/privacy-policy-cookies-and-accessibility/accessibility-statement/">Accessibility statement</a></p>
+<p><a href="/about-us/freedom-of-information/">Freedom of information</a></p>
+<p><a href="/contact-us/making-a-complaint-about-a-fertility-clinic/" title="More information about making a complaint">Complaints</a></p>
+<p><a href="/work-for-us/">Work for us</a></p></div>
+</div>
+
+
+
+
+<div class="col-md-3 footer-link-section">
+                <h2>For clinics</h2>
+    
+    <div class="footer-links-listing"><p><a href="https://portal.hfea.gov.uk/knowledge-base/">Clinic Portal</a></p>
+<p><a href="/about-us/applying-for-a-clinic-licence/">Applying for a clinic licence</a></p>
+<p><a href="/about-us/applying-for-a-research-licence/">Applying for a research licence</a></p>
+<!--<p><a href="/treatments/embryo-testing-and-treatments-for-disease/approved-pgd-and-ptt-conditions/">PGT-M conditions</a></p>-->
+<p><a href="/pgt-m-conditions/"><abbr title="Pre-implantation genetic testing for monogenic or single-gene disorders">PGT-M</abbr> conditions</a></p></div>
+</div>
+
+
+
+
+<div class="col-md-3 footer-link-section">
+                <h2>Research and data</h2>
+    
+    <div class="footer-links-listing"><p><a href="/about-us/data-research/" title="Data research">Data research</a></p>
+<p><a href="/about-us/publications/research-and-data/">Research publications</a></p>
+<p><a href="/about-us/hfea-dashboard/" title="HFEA dashboard">HFEA dashboard</a></p></div>
+</div>
+                        </div>
+                    </div>
+            </div>
+                </div>
+        </div>
+                </div>
+    </div>
+
+
+
+            </div>
+    </div>
+</footer>
+
+    </div>
+  
+        
+<img style="display: none;" id="our-pixel" src="https://hfeagb.sharepoint.com/:i:/r/Shared%20Documents/HFEA%20internal%20tracking/hfea-pixel.png" alt="Human Fertilisation & Embryology Authority (HFEA)">
+
+<script>
+  function createCookie(name, value, days) {
+    if (days) {
+      var date = new Date();
+      date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+      var expires = "; expires=" + date.toGMTString();
+    }
+    else var expires = "";
+    document.cookie = name + "=" + value + expires + "; path=/;domain=hfea.gov.uk";
+  }
+  
+  window.addEventListener('load', () => {
+    const ourPixel = document.querySelector('#our-pixel');
+    if (ourPixel.width == 10 || document.cookie.includes('HFEA_staff=true')) {
+      console.log('HFEA staff');
+      createCookie("HFEA_staff", "true", 1000);
+      clarity("set", "traffic", "HFEA_staff");
+    }
+  });
+</script>
+
+
+    
+
+    <script src="/theme/assets/js/jquery-ui.js"></script>
+    <script src="/theme/assets/js/jquery.ui.autocomplete.html.js"></script>
+    <!--<script src="/theme/assets/js/media.match.js"></script>-->
+    <script src="/theme/assets/js/bootstrap.min.js"></script>
+    <script src="/theme/assets/js/plugins.js"></script>
+    <script src="/theme/assets/js/bootstrap-toggle.min.js"></script>
+    <script src="/theme/assets/js/hfea.js"></script>
+    <script src="/theme/assets/js/prototype-only.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBokXSpkR-FLZnSQSpRKUdoXKl9GILRp5Y"></script>
+
+    <!-- Temporary OTR-related changes -->
+    <script>
+        // Adds items to 'I am...' in the main navigation
+        let linksUnderIAM = document.querySelector(
+            'nav.primary-nav ul li.primary-li a[href="/i-am/"] + div div ul'
+        );
+        linksUnderIAM.appendChild(document.createElement('li'));
+        linksUnderIAM
+            .querySelector('li:last-child')
+            .classList.add('col-lg-4', 'column', 'col');
+        linksUnderIAM.querySelector(
+            'li:last-child'
+        ).innerHTML = `<a href="/donation/donors/">A donor</a>`;
+        linksUnderIAM.appendChild(document.createElement('li'));
+        linksUnderIAM
+            .querySelector('li:last-child')
+            .classList.add('col-lg-4', 'column', 'col');
+        linksUnderIAM.querySelector(
+            'li:last-child'
+        ).innerHTML = `<a href="/donation/donor-conceived-people-and-their-parents/">Looking for information about my donor</a>`;
+
+        // Adds items to 'Treatments' in the main navigation
+        let linksUnderTreatments = document.querySelector(
+            'nav.primary-nav ul li.primary-li a[href="/treatments/"] + div div ul'
+        );
+        linksUnderTreatments.appendChild(document.createElement('li'));
+        linksUnderTreatments
+            .querySelector('li:last-child')
+            .classList.add('col-lg-4', 'column', 'col');
+        linksUnderTreatments.querySelector(
+            'li:last-child'
+        ).innerHTML = `<a href="/treatments/explore-all-treatments/using-donated-eggs-sperm-or-embryos-in-treatment/">Using a donor in treatment</a>`;
+    </script>
+    <!-- END Temporary OTR-related changes -->
+    <!-- Temporary fix for CaFC: PGD (PGT-M) and PGS -->
+	<script>
+		// PGD: 1834
+		// PGS: 1835
+		// Replace 'PGD' with 'PGT-M' for all clinics returned on the CaFC search results page
+		if (window.location.href.toLowerCase().includes('choose-a-clinic/clinic-search/results')) {
+			let clinicTreatments = document.querySelectorAll('li.clinic .clinic-specialty.row div:nth-of-type(2) ul li');
+			const oldTermPGD = 'PGD';
+			const newTermPGD = 'PGT-M';
+			clinicTreatments.forEach(treatment => {
+				if (treatment.innerText == oldTermPGD) {
+					treatment.innerHTML = treatment.innerHTML.replace(oldTermPGD, newTermPGD);
+				}
+			})
+            // Replace 'PGD' with 'PGT-M' in 'You searched for clinics: treating...' at the top of the page
+			if (document.querySelector('#results .search-terms-label')) {
+				let youSearchedForClinics = document.querySelector('#results .search-terms-label');
+				youSearchedForClinics.innerText = youSearchedForClinics.innerText.replace(oldTermPGD, newTermPGD);
+			}
+            // Replace 'PGD' with 'PGT-M' in the page title
+			document.title = document.title.replace(oldTermPGD, newTermPGD);
+		}
+		// In 'Screening services' on CaFC in 'Fine tune your search'
+		if (window.location.href.toLowerCase().includes('choose-a-clinic/clinic-search')) {
+			let checkboxGroups = document.querySelectorAll('.checkbox-group');
+            checkboxGroups.forEach(treatment => {
+                // Replace 'PGD' with 'PGT-M'
+				if (treatment.innerText.startsWith(' PGD')) {
+					treatment.innerHTML = treatment.innerHTML.replace(/\ PGD/i, '\ PGT\-M');
+                }
+                // Remove 'PGS'
+                if (treatment.innerText.startsWith(' PGS')) {
+                    treatment.remove();
+                }
+			})
+        }
+        // Fertility clinics starting with the letter 'A'
+        if (window.location.href.toLowerCase().includes('choose-a-clinic/clinic-search/all-clinics/?alpha=a')) {
+            // Find among all centres
+            let allCentres = document.querySelectorAll('div.row.clinic-row');
+            // If found
+            allCentres.forEach(centre => {
+                if (centre.querySelector('div div div h2.h3').innerText.toLowerCase().includes('apricity')) {
+                    centre.remove();
+                }
+            })
+        }
+        // END Fertility clinics starting with the letter 'A'
+        // Individual clinic profile pages
+        if (window.location.href.toLowerCase().includes('choose-a-clinic/clinic-search/results/9350') ||
+            window.location.href.toLowerCase().includes('choose-a-clinic/clinic-search/results/30') ||
+            window.location.href.toLowerCase().includes('choose-a-clinic/clinic-search/results/109') ||
+            window.location.href.toLowerCase().includes('choose-a-clinic/clinic-search/results/33') ||
+            window.location.href.toLowerCase().includes('choose-a-clinic/clinic-search/results/9282')) {
+                // Find on the page
+                let allSmallHeadings = document.querySelectorAll('div.clinic-details div .detail ul li h3.small-header');
+                // If found
+                allSmallHeadings.forEach(smallHeading => {
+                    if (smallHeading.innerText.toLowerCase().includes('apricity')) {
+                        smallHeading.closest('ul.list-unstyled').remove();
+                    }
+                })
+        }
+        // END Individual clinic profile pages
+
+        // Other CaFC pages, e.g. 'location' and 'distance'
+        if (window.location.href.toLowerCase().includes('choose-a-clinic/clinic-search/results/?')) {
+            let satelliteHeadings = document.querySelectorAll('.clinic div div .clinic-name a');
+            satelliteHeadings.forEach(satelliteHeading => {
+                if (satelliteHeading.innerText.toLowerCase().includes('apricity')) {
+                    satelliteHeading.closest('li.clinic').remove();
+                }
+            })
+        }
+        // END Other CaFC pages, e.g. 'location' and 'distance'
+	</script>
+	<!-- END Temporary fix for CaFC: PGD (PGT-M) and PGS -->
+</body>
+</html>
