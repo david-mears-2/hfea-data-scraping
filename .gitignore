@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+*.egg-info/
+
+# Project output
+archived_html/
+output/
+*.csv
+!thingsOfInterest.csv
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+.claude/
+
+# OS
+.DS_Store
+Thumbs.db
