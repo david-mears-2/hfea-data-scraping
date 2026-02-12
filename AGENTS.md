@@ -1,0 +1,1 @@
+Instead of running `source venv/bin/activate` and then `python script.py`, or chaining with `&&`, use the venv python directly: `venv/bin/python script.py`. This avoids needing to activate the environment at all and works across separate Bash invocations.
