@@ -1,11 +1,20 @@
-"""Unit tests for scraper parent clinic resolution and extraction."""
+"""Unit tests and end-to-end tests for scraper.py."""
 
 import argparse
+import csv
+import os
+import tempfile
+from unittest.mock import patch
+
 import pytest
+from conftest import requires_archived_html
 from scraper import (
     resolve_parent_clinics, extract_clinic_urls_from_page,
     build_search_url, parse_args, resolve_args,
+    scrape_search_results, scrape_clinic_detail, scrape_all_clinics,
+    write_csv, main,
     DEFAULT_MAX_PAGES, DEFAULT_OUTPUT,
+    BASE_URL, SEARCH_PATH,
 )
 
 
@@ -456,3 +465,311 @@ class TestResolveArgs:
         inputs = iter(['custom/path.csv', ''])
         resolve_args(args, input_fn=lambda _: next(inputs))
         assert args.output == 'custom/path.csv'
+
+
+# ── Tests against archived HTML (real page structure) ────────────────────
+
+
+EMPTY_SEARCH_HTML = '''
+<html><body>
+    <ul class="list-group clinic-list"></ul>
+</body></html>
+'''
+
+
+@requires_archived_html
+class TestExtractClinicUrlsFromRealHtml:
+    """Test extract_clinic_urls_from_page against archived search results."""
+
+    def test_finds_all_10_clinics(self, search_results_html):
+        clinics = extract_clinic_urls_from_page(search_results_html)
+        assert len(clinics) == 10
+
+    def test_first_clinic_is_homerton(self, search_results_html):
+        clinics = extract_clinic_urls_from_page(search_results_html)
+        homerton = clinics[0]
+        assert homerton['name'] == 'Homerton Fertility Centre'
+        assert homerton['clinic_id'] == 153
+        assert homerton['clinic_type'] == 'clinic'
+        assert homerton['distance'] == 3.21
+
+    def test_satellite_clinic_detected(self, search_results_html):
+        clinics = extract_clinic_urls_from_page(search_results_html)
+        lister_shard = next(c for c in clinics if 'Shard' in c['name'])
+        assert lister_shard['clinic_type'] == 'satellite'
+        assert lister_shard['clinic_id'] is None
+        assert lister_shard['distance'] == 4.48
+        assert len(lister_shard['parent_clinics']) == 1
+        assert lister_shard['parent_clinics'][0]['clinic_id'] == 6
+        assert lister_shard['parent_clinics'][0]['name'] == 'The Lister Fertility Clinic'
+
+    def test_multi_parent_satellite(self, search_results_html):
+        clinics = extract_clinic_urls_from_page(search_results_html)
+        egg_bank = next(c for c in clinics if 'London Egg Bank' in c['name'])
+        assert egg_bank['clinic_type'] == 'satellite'
+        assert len(egg_bank['parent_clinics']) == 3
+        parent_ids = [p['clinic_id'] for p in egg_bank['parent_clinics']]
+        assert parent_ids == [75, 105, 301]
+
+    def test_clinic_with_treatments(self, search_results_html):
+        clinics = extract_clinic_urls_from_page(search_results_html)
+        create = next(c for c in clinics if 'CREATE' in c['name'])
+        assert create['treatments']['ivf'] is True
+        assert create['treatments']['icsi'] is True
+        assert create['treatments']['surgical_sperm'] is True
+
+    def test_kings_fertility(self, search_results_html):
+        clinics = extract_clinic_urls_from_page(search_results_html)
+        kings = next(c for c in clinics if 'King' in c['name'])
+        assert kings['clinic_id'] == 109
+        assert kings['distance'] == 5.78
+        assert kings['clinic_type'] == 'clinic'
+
+
+# ── scrape_search_results (mocked network) ───────────────────────────────
+
+
+@requires_archived_html
+class TestScrapeSearchResults:
+
+    def test_single_page_of_results(self, search_results_html):
+        """Page 1 returns clinics, page 2 returns empty → stops."""
+        call_count = [0]
+
+        def mock_fetch_page(url, max_retries=3):
+            call_count[0] += 1
+            if 'page=1' in url:
+                return search_results_html
+            return EMPTY_SEARCH_HTML
+
+        with patch('scraper.fetch_page', side_effect=mock_fetch_page):
+            clinics = scrape_search_results(
+                'https://www.hfea.gov.uk/choose-a-clinic/clinic-search/results/?location=e16+4jt&distance=50',
+                max_pages=5,
+            )
+
+        assert len(clinics) == 10
+        assert call_count[0] == 2  # page 1 + page 2 (empty, stops)
+
+    def test_max_pages_respected(self, search_results_html):
+        """Stops after max_pages even if results keep coming."""
+        def mock_fetch_page(url, max_retries=3):
+            return search_results_html  # always return results
+
+        with patch('scraper.fetch_page', side_effect=mock_fetch_page):
+            clinics = scrape_search_results(
+                'https://example.com/results/?location=X&distance=10',
+                max_pages=2,
+            )
+
+        # 2 pages x 10 clinics = 20
+        assert len(clinics) == 20
+
+    def test_failed_page_is_skipped(self, search_results_html):
+        """If fetch_page returns None, that page is skipped."""
+        def mock_fetch_page(url, max_retries=3):
+            if 'page=1' in url:
+                return None  # simulate failure
+            if 'page=2' in url:
+                return search_results_html
+            return EMPTY_SEARCH_HTML
+
+        with patch('scraper.fetch_page', side_effect=mock_fetch_page):
+            clinics = scrape_search_results(
+                'https://example.com/results/?location=X&distance=10',
+                max_pages=3,
+            )
+
+        # Page 1 failed (0), page 2 has 10, page 3 empty
+        assert len(clinics) == 10
+
+
+# ── scrape_clinic_detail (mocked network) ────────────────────────────────
+
+
+@requires_archived_html
+class TestScrapeClinicDetail:
+
+    def test_extracts_data_from_detail_page(self, barts_detail_html):
+        def mock_fetch_page(url, max_retries=3):
+            return barts_detail_html
+
+        with patch('scraper.fetch_page', side_effect=mock_fetch_page):
+            data = scrape_clinic_detail(94, 'Barts', {'ivf': True, 'icsi': True, 'surgical_sperm': False})
+
+        assert data is not None
+        assert data['Name of clinic'] == 'Barts Health Centre for Reproductive Medicine'
+        assert data['Do they do IVF'] is True
+        assert data['Do they do ICSI'] is True
+        assert data['Do they do Surgical sperm collection'] is False
+        assert data['Inspection rating out of 5'] == 5.0
+
+    def test_returns_none_on_fetch_failure(self):
+        with patch('scraper.fetch_page', return_value=None):
+            data = scrape_clinic_detail(999, 'Missing Clinic', {})
+        assert data is None
+
+
+# ── write_csv ────────────────────────────────────────────────────────────
+
+
+class TestWriteCsv:
+
+    def test_writes_correct_structure(self):
+        data = [
+            {
+                'Name of clinic': 'Test Clinic',
+                'Satellite of': '',
+                'Transport for': '',
+                'Distance (miles)': 5.0,
+                'BMI eligibility limit': True,
+                'Do they do egg-freezing': True,
+                'Do they do IVF': True,
+                'Do they do ICSI': False,
+                'Do they do Surgical sperm collection': False,
+                'Treats NHS patients': True,
+                'Treats private patients': False,
+                'At least one counselling session included': True,
+                'Inspection rating out of 5': 4.0,
+                'Patient rating out of 5': 3.5,
+                'Number of patient ratings': 10,
+                'Patient empowerment rating': 3.0,
+                'Patient empathy rating': 3.5,
+                'Under 38s births per embryo transferred': 30.0,
+                'Error bars: Under 38s births per embryo transferred': 10.0,
+                'Under 38s births per egg collection': 40.0,
+                'Error bars: Under 38s births per egg collection': 15.0,
+                'Under 38s births per donor insemination treatment': 12.0,
+                'Error bars: Under 38s births per donor insemination treatment': 20.0,
+            }
+        ]
+
+        with tempfile.NamedTemporaryFile(mode='w', suffix='.csv', delete=False) as f:
+            tmp_path = f.name
+
+        try:
+            write_csv(data, tmp_path)
+
+            with open(tmp_path, 'r', encoding='utf-8') as f:
+                reader = list(csv.reader(f))
+
+            # 3 metadata rows + 1 data row
+            assert len(reader) == 4
+            # First cell of row 1 is "Thing of interest:"
+            assert reader[0][0] == 'Thing of interest:'
+            # First cell of row 2 is "Type:"
+            assert reader[1][0] == 'Type:'
+            # First cell of row 3 is "Where to find it on the page:"
+            assert reader[2][0] == 'Where to find it on the page:'
+            # Data row has clinic name
+            assert reader[3][0] == 'Test Clinic'
+        finally:
+            os.unlink(tmp_path)
+
+    def test_empty_data_writes_nothing(self, capsys):
+        with tempfile.NamedTemporaryFile(mode='w', suffix='.csv', delete=False) as f:
+            tmp_path = f.name
+
+        try:
+            write_csv([], tmp_path)
+            captured = capsys.readouterr()
+            assert 'No data' in captured.out
+        finally:
+            os.unlink(tmp_path)
+
+
+# ── scrape_all_clinics (end-to-end with mocked network) ──────────────────
+
+
+@requires_archived_html
+class TestScrapeAllClinics:
+
+    def test_end_to_end_pipeline(self, search_results_html, barts_detail_html):
+        """Full pipeline: search results → detail pages → merged data."""
+
+        def mock_fetch_page(url, max_retries=3):
+            if 'page=1' in url:
+                return search_results_html
+            if 'page=2' in url:
+                return EMPTY_SEARCH_HTML
+            # Any detail page request returns Barts HTML
+            if '/results/' in url and url.rstrip('/').split('/')[-1].isdigit():
+                return barts_detail_html
+            return EMPTY_SEARCH_HTML
+
+        with patch('scraper.fetch_page', side_effect=mock_fetch_page):
+            data = scrape_all_clinics(
+                'https://www.hfea.gov.uk/choose-a-clinic/clinic-search/results/?location=e16+4jt&distance=50',
+                max_pages=5,
+            )
+
+        # Should have data for all 10 clinics from search page
+        # + parent clinics outside search area (IDs 75, 105, 301 not in results)
+        assert len(data) > 0
+        names = [d['Name of clinic'] for d in data]
+        # Satellites should be present
+        assert any('Shard' in n for n in names)
+        # Regular clinics should have detail data
+        barts_data = next(d for d in data if 'Barts' in d['Name of clinic'])
+        assert barts_data['Inspection rating out of 5'] == 5.0
+
+    def test_satellite_distances_override_parents(self, search_results_html, barts_detail_html):
+        """Parent clinic distances are overridden by nearest satellite distance."""
+
+        def mock_fetch_page(url, max_retries=3):
+            if 'page=1' in url:
+                return search_results_html
+            if 'page=2' in url:
+                return EMPTY_SEARCH_HTML
+            if '/results/' in url and url.rstrip('/').split('/')[-1].isdigit():
+                return barts_detail_html
+            return EMPTY_SEARCH_HTML
+
+        with patch('scraper.fetch_page', side_effect=mock_fetch_page):
+            data = scrape_all_clinics(
+                'https://www.hfea.gov.uk/choose-a-clinic/clinic-search/results/?location=e16+4jt&distance=50',
+                max_pages=5,
+            )
+
+        # The Lister Fertility Clinic (ID 6) should be fetched as a missing parent
+        # and should get the satellite's distance (4.48 miles)
+        missing_parents = [d for d in data if d.get('Warning') == 'Parent clinic outside search area']
+        assert len(missing_parents) > 0
+
+
+# ── main (end-to-end) ───────────────────────────────────────────────────
+
+
+@requires_archived_html
+class TestMain:
+
+    def test_main_writes_csv(self, search_results_html, barts_detail_html):
+        def mock_fetch_page(url, max_retries=3):
+            if 'page=1' in url:
+                return search_results_html
+            if 'page=2' in url:
+                return EMPTY_SEARCH_HTML
+            if '/results/' in url and url.rstrip('/').split('/')[-1].isdigit():
+                return barts_detail_html
+            return EMPTY_SEARCH_HTML
+
+        with tempfile.NamedTemporaryFile(suffix='.csv', delete=False) as f:
+            tmp_path = f.name
+
+        try:
+            with patch('scraper.fetch_page', side_effect=mock_fetch_page):
+                result = main([
+                    '--location', 'E16 4JT',
+                    '--distance', '50',
+                    '--output', tmp_path,
+                    '--max-pages', '2',
+                ])
+
+            assert result == 0
+            # CSV should exist and have data
+            with open(tmp_path, 'r', encoding='utf-8') as f:
+                reader = list(csv.reader(f))
+            # 3 metadata rows + data rows
+            assert len(reader) > 3
+        finally:
+            os.unlink(tmp_path)

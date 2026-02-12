@@ -55,7 +55,8 @@ def main():
     print("=" * 60)
     print()
 
-    # URLs to archive
+    # URLs to archive — these serve as test fixtures for the test suite.
+    # Run this script once to populate archived_html/ before running tests.
     urls_to_archive = [
         {
             'url': 'https://www.hfea.gov.uk/choose-a-clinic/clinic-search/results/?location=e16%204jt&distance=50',
@@ -65,7 +66,12 @@ def main():
         {
             'url': 'https://www.hfea.gov.uk/choose-a-clinic/clinic-search/results/153/',
             'filename': 'clinic_detail_153.html',
-            'description': 'Clinic detail page - Homerton Fertility Centre (ID 153)'
+            'description': 'Clinic detail page - Homerton Fertility Centre (ID 153, NHS only)'
+        },
+        {
+            'url': 'https://www.hfea.gov.uk/choose-a-clinic/clinic-search/results/94/',
+            'filename': 'barts_detail.html',
+            'description': 'Clinic detail page - Barts Health Centre (ID 94, NHS + private)'
         }
     ]
 
